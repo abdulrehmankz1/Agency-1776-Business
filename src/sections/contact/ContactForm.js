@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import SectionShell from "@/components/SectionShell";
 import CTAButton from "@/components/CTAButton";
 import { MaskedLine } from "@/components/MaskedLine";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import { useScrubReveal } from "@/hooks/useScrubReveal";
+import { formatPhoneInput } from "@/lib/phone";
 
 const FIELDS = [
   {
@@ -27,7 +29,7 @@ const FIELDS = [
     name: "phone",
     label: "Phone Number",
     type: "tel",
-    placeholder: "Enter your phone number",
+    placeholder: "+1 (555) 555-0100",
     autoComplete: "tel",
   },
   {
@@ -90,6 +92,65 @@ export default function ContactForm() {
   const revealRef = useSectionReveal();
   const scrubRef = useScrubReveal();
 
+  // "idle" | "submitting" | "success" | "error"
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
+
+  // Phone + consent are controlled so we can enforce the compliance pattern:
+  // live +1 formatting, consent gated on a present phone number, and consent
+  // auto-clearing when the phone is emptied.
+  const [phone, setPhone] = useState("");
+  const [smsConsent, setSmsConsent] = useState(false);
+  const [promoConsent, setPromoConsent] = useState(false);
+
+  const hasPhone = phone.trim().length > 0;
+
+  // A user who ticks the boxes with a phone entered and then deletes the
+  // phone must not ship stale consent state.
+  useEffect(() => {
+    if (!hasPhone) {
+      setSmsConsent(false);
+      setPromoConsent(false);
+    }
+  }, [hasPhone]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (status === "submitting") return;
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    // Controlled fields override the FormData snapshot.
+    data.phone = phone;
+    data.smsConsent = hasPhone && smsConsent;
+    data.promoConsent = hasPhone && promoConsent;
+
+    setStatus("submitting");
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        throw new Error(payload.error || "Something went wrong.");
+      }
+
+      form.reset();
+      setPhone("");
+      setSmsConsent(false);
+      setPromoConsent(false);
+      setStatus("success");
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+      setStatus("error");
+    }
+  }
+
   return (
     <SectionShell
       id="brief"
@@ -127,7 +188,7 @@ export default function ContactForm() {
         </div>
 
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
           className="chamfer chamfer-md flex flex-col gap-10 p-8 md:p-12"
           style={{
             "--chamfer-border-color":
@@ -147,9 +208,21 @@ export default function ContactForm() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {FIELDS.map((f) => (
-              <Field key={f.name} {...f} />
-            ))}
+            {FIELDS.map((f) =>
+              f.name === "phone" ? (
+                <PhoneField
+                  key={f.name}
+                  {...f}
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(formatPhoneInput(e.target.value));
+                    if (status === "error") setError("");
+                  }}
+                />
+              ) : (
+                <Field key={f.name} {...f} />
+              )
+            )}
             {SELECT_FIELDS.map((f) => (
               <SelectField key={f.name} {...f} />
             ))}
@@ -168,9 +241,70 @@ export default function ContactForm() {
             />
           </label>
 
-          <CTAButton type="submit" variant="solid" size="lg" className="mt-2">
-            Send message
-          </CTAButton>
+          <fieldset className="flex flex-col gap-4 border-t border-muted/40 pt-8">
+            <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+              SMS preferences
+            </MaskedLine>
+
+            {!hasPhone && (
+              <p className="text-xs italic text-foreground/40">
+                Enter a phone number above to opt in to SMS messages.
+              </p>
+            )}
+
+            <ConsentCheckbox
+              checked={smsConsent}
+              onChange={(e) => setSmsConsent(e.target.checked)}
+              disabled={!hasPhone}
+              required={hasPhone}
+            >
+              I agree to receive account and project-related text messages from
+              Agency 1776 Business at the number provided. Message frequency
+              varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP
+              for help.
+            </ConsentCheckbox>
+
+            <ConsentCheckbox
+              checked={promoConsent}
+              onChange={(e) => setPromoConsent(e.target.checked)}
+              disabled={!hasPhone}
+              required={hasPhone}
+            >
+              I agree to receive occasional promotional and marketing text
+              messages from Agency 1776 Business. Message frequency varies. Msg
+              &amp; data rates may apply. Reply STOP to opt out, HELP for help.
+            </ConsentCheckbox>
+          </fieldset>
+
+          <div className="flex flex-col gap-4">
+            <CTAButton
+              type="submit"
+              variant="solid"
+              size="lg"
+              className="mt-2"
+              disabled={status === "submitting"}
+            >
+              {status === "submitting" ? "Sending…" : "Send message"}
+            </CTAButton>
+
+            {status === "success" && (
+              <p
+                role="status"
+                className="text-xs uppercase tracking-[0.22em] text-accent"
+              >
+                Thanks — your message is in. One senior will reply within a
+                working day.
+              </p>
+            )}
+            {status === "error" && (
+              <p
+                role="alert"
+                className="text-xs uppercase tracking-[0.22em] text-foreground/60"
+              >
+                {error} Please try again or email us directly.
+              </p>
+            )}
+          </div>
         </form>
       </div>
     </SectionShell>
@@ -191,6 +325,48 @@ function Field({ name, label, type, placeholder, required, autoComplete }) {
         autoComplete={autoComplete}
         className="w-full border-b border-muted/60 bg-transparent py-3 text-sm text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
       />
+    </label>
+  );
+}
+
+function PhoneField({ name, label, placeholder, autoComplete, value, onChange }) {
+  return (
+    <label className="flex flex-col gap-3">
+      <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+        {label}
+      </MaskedLine>
+      <input
+        name={name}
+        type="tel"
+        inputMode="tel"
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        value={value}
+        onChange={onChange}
+        className="w-full border-b border-muted/60 bg-transparent py-3 text-sm text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
+      />
+    </label>
+  );
+}
+
+function ConsentCheckbox({ checked, onChange, disabled, required, children }) {
+  return (
+    <label
+      className={`flex items-start gap-3 text-xs leading-relaxed ${
+        disabled ? "cursor-not-allowed" : "cursor-pointer"
+      }`}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        required={required}
+        className="mt-0.5 h-4 w-4 shrink-0 accent-accent disabled:cursor-not-allowed disabled:opacity-40"
+      />
+      <span className={disabled ? "text-foreground/40" : "text-foreground/70"}>
+        {children}
+      </span>
     </label>
   );
 }
