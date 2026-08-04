@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Theme-scoped variant. Lets components opt specific utilities into the
+   light palette only — e.g. `light:text-foreground` darkens a dimmed
+   label in light mode while leaving the dark theme (the canonical mode)
+   untouched. Matches any element under the light-themed <html>. */
+@custom-variant light (&:where([data-theme="light"] *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -105,10 +111,20 @@ body {
   overflow-x: clip;
 }
 
+/* Site-wide readability bump. Raising the root font-size scales every
+   rem-based size (text + spacing) up together for an easier read, and a
+   slightly heavier default weight gives Space Grotesk's light 400 body
+   copy more presence. Elements with their own explicit font-weight
+   (headings, font-medium/semibold labels) are unaffected. */
+html {
+  font-size: 17px;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-weight: 480;
   /* Space Grotesk reads best with a hair of tightening at body size —
      keeps the geometric g/y descenders from feeling airy, without
      overriding the many explicit `tracking-[...]` values in the tree. */
@@ -140,14 +156,6 @@ body {
        Neue has taller caps than Anton SC — a hair more room here
        prevents ascenders touching descenders in stacked lines. */
     line-height: 1;
-  }
-}
-
-/* Hide native cursor when custom cursor is active (desktop w/ hover only). */
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  html.cursor-none-root,
-  html.cursor-none-root * {
-    cursor: none !important;
   }
 }
 

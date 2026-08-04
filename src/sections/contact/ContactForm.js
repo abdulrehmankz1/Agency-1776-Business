@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import SectionShell from "@/components/SectionShell";
 import CTAButton from "@/components/CTAButton";
 import { MaskedLine } from "@/components/MaskedLine";
+import { ScrubText } from "@/components/ScrubText";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import { useScrubReveal } from "@/hooks/useScrubReveal";
-import { formatPhoneInput } from "@/lib/phone";
+import { formatPhoneInput, normalizePhoneForSubmit } from "@/lib/phone";
+import ThemedSelect from "@/components/ThemedSelect";
 
 const FIELDS = [
   {
@@ -42,7 +44,11 @@ const FIELDS = [
   {
     name: "website",
     label: "Current Website URL",
-    type: "url",
+    // Deliberately `text`, not `url`: the native `url` type rejects
+    // anything without a scheme, so "www.example.com" was blocked (QA).
+    // The field is optional and free-form; we accept whatever they type.
+    type: "text",
+    inputMode: "url",
     placeholder: "Enter your current website, if you have one",
     autoComplete: "url",
   },
@@ -54,15 +60,37 @@ const SELECT_FIELDS = [
     label: "What Do You Need Help With?",
     required: true,
     options: [
+      "Full monthly growth system",
       "New business website",
       "Website redesign",
-      "Lead generation page",
+      "Lead capture setup",
+      "Landing pages / funnels",
+      "CRM setup / lead organization",
+      "Follow-up automation",
+      "Meta Ads",
+      "Google Ads",
       "Brand messaging",
       "SEO foundation",
-      "Website strategy",
-      "Ongoing website support",
+      "Social or campaign assets",
       "Not sure yet",
       "Other",
+    ],
+  },
+  {
+    name: "leads",
+    label: "Where Are Leads Getting Lost?",
+    required: false,
+    options: [
+      "Not enough website visitors",
+      "People visit but do not contact us",
+      "Forms are weak or confusing",
+      "Leads come in but follow-up is slow",
+      "We do not have automation",
+      "We do not track leads well",
+      "We need landing pages for ads",
+      "Our ads are not converting",
+      "We need better creative assets",
+      "We are not sure yet",
     ],
   },
   {
@@ -70,9 +98,10 @@ const SELECT_FIELDS = [
     label: "Budget Range",
     required: true,
     options: [
-      "Starter website plan",
-      "Growth website plan",
-      "Custom / Not sure",
+      "Around $1,000/month",
+      "Around $1,500/month",
+      "Around $2,000/month",
+      "Custom / not sure",
     ],
   },
   {
@@ -103,6 +132,10 @@ export default function ContactForm() {
   const [smsConsent, setSmsConsent] = useState(false);
   const [promoConsent, setPromoConsent] = useState(false);
 
+  // Dropdowns are custom (ThemedSelect), so their values live in state and
+  // are validated/serialised manually rather than via native <select>.
+  const [selects, setSelects] = useState({ help: "", leads: "", budget: "", timeline: "" });
+
   const hasPhone = phone.trim().length > 0;
 
   // A user who ticks the boxes with a phone entered and then deletes the
@@ -124,6 +157,30 @@ export default function ContactForm() {
     data.phone = phone;
     data.smsConsent = hasPhone && smsConsent;
     data.promoConsent = hasPhone && promoConsent;
+    data.help = selects.help;
+    data.leads = selects.leads;
+    data.budget = selects.budget;
+    data.timeline = selects.timeline;
+
+    // Phone is optional — an empty field submits fine. But a partially
+    // typed number must be a complete +1 (xxx) xxx-xxxx. normalizePhoneForSubmit
+    // returns "" for anything under 10 national digits, so a non-empty phone
+    // that fails to normalize is an incomplete entry we must block. (Native
+    // `pattern` is kept as a backstop, but this JS check is the authority.)
+    if (phone.trim() && !normalizePhoneForSubmit(phone)) {
+      setError("Please enter a complete phone number, or leave the field blank.");
+      setStatus("error");
+      return;
+    }
+
+    // Custom dropdowns can't rely on native `required`, so enforce the
+    // required selects here before we attempt to submit.
+    const missing = SELECT_FIELDS.find((f) => f.required && !selects[f.name]);
+    if (missing) {
+      setError(`Please choose an option for "${missing.label}".`);
+      setStatus("error");
+      return;
+    }
 
     setStatus("submitting");
     setError("");
@@ -144,6 +201,7 @@ export default function ContactForm() {
       setPhone("");
       setSmsConsent(false);
       setPromoConsent(false);
+      setSelects({ help: "", leads: "", budget: "", timeline: "" });
       setStatus("success");
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
@@ -160,31 +218,26 @@ export default function ContactForm() {
     >
       <div className="grid gap-14 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-24">
         <div ref={scrubRef} className="flex flex-col gap-8">
-          <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
                 className="inline-block h-1.5 w-1.5 bg-accent"
               />
-              Project brief / 02
+              Project brief
             </span>
           </MaskedLine>
 
-          <ul className="flex flex-col gap-6 border-y border-muted/40 py-8">
-            {[
-              "One senior gets back to you personally.",
-              "No sales team, no discovery-call funnel.",
-              "First reply usually within a working day.",
-            ].map((line, i) => (
-              <li key={i} className="flex items-start gap-4 text-sm text-foreground/80">
-                <span
-                  data-reveal="icon"
-                  className="mt-2 inline-block h-1.5 w-1.5 shrink-0 bg-accent"
-                />
-                <MaskedLine>{line}</MaskedLine>
-              </li>
-            ))}
-          </ul>
+          <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+            <ScrubText>Start the conversation.</ScrubText>
+          </h2>
+
+          <p className="max-w-md text-base font-medium leading-relaxed text-foreground/70">
+            <MaskedLine>
+              Complete the form below so we can understand your business needs
+              and your goals.
+            </MaskedLine>
+          </p>
         </div>
 
         <form
@@ -198,7 +251,7 @@ export default function ContactForm() {
         >
           <div
             data-reveal="icon"
-            className="flex items-center justify-between text-[10px] uppercase tracking-[0.28em] text-foreground/50"
+            className="flex items-center justify-between text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground"
           >
             <span className="inline-flex items-center gap-3">
               <span className="h-1.5 w-1.5 bg-accent" />
@@ -224,12 +277,17 @@ export default function ContactForm() {
               )
             )}
             {SELECT_FIELDS.map((f) => (
-              <SelectField key={f.name} {...f} />
+              <SelectField
+                key={f.name}
+                {...f}
+                value={selects[f.name]}
+                onChange={(val) => setSelects((s) => ({ ...s, [f.name]: val }))}
+              />
             ))}
           </div>
 
           <label className="flex flex-col gap-3">
-            <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+            <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
               Message
             </MaskedLine>
             <textarea
@@ -237,17 +295,17 @@ export default function ContactForm() {
               rows={5}
               required
               placeholder="Tell us what you are working on and what you need help with."
-              className="w-full resize-none border-b border-muted/60 bg-transparent py-3 text-sm text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
+              className="w-full resize-none border-b border-muted/60 bg-transparent py-3 text-base text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
             />
           </label>
 
           <fieldset className="flex flex-col gap-4 border-t border-muted/40 pt-8">
-            <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+            <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
               SMS preferences
             </MaskedLine>
 
             {!hasPhone && (
-              <p className="text-xs italic text-foreground/40">
+              <p className="text-base italic text-foreground/60 light:text-foreground/85">
                 Enter a phone number above to opt in to SMS messages.
               </p>
             )}
@@ -290,7 +348,7 @@ export default function ContactForm() {
             {status === "success" && (
               <p
                 role="status"
-                className="text-xs uppercase tracking-[0.22em] text-accent"
+                className="text-sm uppercase tracking-[0.22em] text-accent"
               >
                 Thanks — your message is in. One senior will reply within a
                 working day.
@@ -299,7 +357,7 @@ export default function ContactForm() {
             {status === "error" && (
               <p
                 role="alert"
-                className="text-xs uppercase tracking-[0.22em] text-foreground/60"
+                className="text-sm uppercase tracking-[0.22em] text-foreground/60 light:text-foreground/85"
               >
                 {error} Please try again or email us directly.
               </p>
@@ -314,7 +372,7 @@ export default function ContactForm() {
 function Field({ name, label, type, placeholder, required, autoComplete }) {
   return (
     <label className="flex flex-col gap-3">
-      <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+      <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
         {label}
       </MaskedLine>
       <input
@@ -323,7 +381,7 @@ function Field({ name, label, type, placeholder, required, autoComplete }) {
         placeholder={placeholder}
         required={required}
         autoComplete={autoComplete}
-        className="w-full border-b border-muted/60 bg-transparent py-3 text-sm text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
+        className="w-full border-b border-muted/60 bg-transparent py-3 text-base text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
       />
     </label>
   );
@@ -332,7 +390,7 @@ function Field({ name, label, type, placeholder, required, autoComplete }) {
 function PhoneField({ name, label, placeholder, autoComplete, value, onChange }) {
   return (
     <label className="flex flex-col gap-3">
-      <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+      <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
         {label}
       </MaskedLine>
       <input
@@ -343,7 +401,11 @@ function PhoneField({ name, label, placeholder, autoComplete, value, onChange })
         autoComplete={autoComplete}
         value={value}
         onChange={onChange}
-        className="w-full border-b border-muted/60 bg-transparent py-3 text-sm text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
+        // Optional field: an empty value submits fine. Completeness is
+        // enforced in handleSubmit (see normalizePhoneForSubmit) so the
+        // "incomplete number" error surfaces as the same inline message as
+        // the rest of the form, rather than a browser-native bubble.
+        className="w-full border-b border-muted/60 bg-transparent py-3 text-base text-foreground caret-accent outline-none transition-colors placeholder:text-foreground/30 focus:border-accent"
       />
     </label>
   );
@@ -352,7 +414,7 @@ function PhoneField({ name, label, placeholder, autoComplete, value, onChange })
 function ConsentCheckbox({ checked, onChange, disabled, required, children }) {
   return (
     <label
-      className={`flex items-start gap-3 text-xs leading-relaxed ${
+      className={`flex items-start gap-3 text-base leading-relaxed ${
         disabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
     >
@@ -364,44 +426,31 @@ function ConsentCheckbox({ checked, onChange, disabled, required, children }) {
         required={required}
         className="mt-0.5 h-4 w-4 shrink-0 accent-accent disabled:cursor-not-allowed disabled:opacity-40"
       />
-      <span className={disabled ? "text-foreground/40" : "text-foreground/70"}>
+      <span
+        className={
+          disabled
+            ? "text-foreground/50 light:text-foreground/65"
+            : "text-foreground/80 light:text-foreground/95"
+        }
+      >
         {children}
       </span>
     </label>
   );
 }
 
-function SelectField({ name, label, options, required }) {
+function SelectField({ label, options, value, onChange }) {
   return (
-    <label className="flex flex-col gap-3">
-      <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+    <div className="flex flex-col gap-3">
+      <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
         {label}
       </MaskedLine>
-      <div className="relative">
-        <select
-          name={name}
-          required={required}
-          defaultValue=""
-          className="peer w-full appearance-none border-b border-muted/60 bg-transparent py-3 pr-8 text-sm text-foreground caret-accent outline-none transition-colors invalid:text-foreground/30 focus:border-accent"
-        >
-          <option value="" disabled>
-            Select an option
-          </option>
-          {options.map((opt) => (
-            <option key={opt} value={opt} className="bg-background text-foreground">
-              {opt}
-            </option>
-          ))}
-        </select>
-        <span
-          aria-hidden
-          className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-foreground/40 transition-colors peer-focus:text-accent"
-        >
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-            <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.2" />
-          </svg>
-        </span>
-      </div>
-    </label>
+      <ThemedSelect
+        value={value}
+        onChange={onChange}
+        options={options}
+        label={label}
+      />
+    </div>
   );
 }

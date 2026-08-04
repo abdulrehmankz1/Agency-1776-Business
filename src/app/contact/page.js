@@ -1,34 +1,44 @@
 import PageHero from "@/components/PageHero";
+import PageCTA from "@/components/PageCTA";
+import CTAButton from "@/components/CTAButton";
 import ContactForm from "@/sections/contact/ContactForm";
-import ContactChannels from "@/sections/contact/ContactChannels";
-import ContactStudios from "@/sections/contact/ContactStudios";
 
 export const metadata = {
   title: "Contact · Agency 1776 Business",
   description:
-    "Tell us what you're building. We reply to every message within one working day.",
+    "Tell us what you're building, what is not working, and what website support you need. Agency 1776 will point you toward the right next step.",
 };
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        index="006"
+        showMeta={false}
         backdrop="directional"
         heading={{
-          lead: "Tell us what",
-          tail: "you're building.",
-          accent: "Short notes welcome.",
+          lead: "Tell us where",
+          tail: "your lead system",
+          accent: "is breaking.",
         }}
         description={[
-          "We reply to every message within one working day.",
-          "Time-zones covered: NYC, London, Tokyo.",
+          "Tell us what you are building, what is not working, and what kind of website support you need.",
+          "Agency 1776 will help point you toward the right next step.",
         ]}
-      />
+      >
+        <CTAButton href="#brief" size="lg">
+          Submit inquiry
+        </CTAButton>
+      </PageHero>
       <ContactForm />
-      <ContactChannels />
-      <ContactStudios />
+      <PageCTA
+        eyebrow="Start a project"
+        heading="A better growth system starts with"
+        accent="a clear conversation."
+      >
+        <CTAButton href="#brief" size="lg">
+          Start a project
+        </CTAButton>
+      </PageCTA>
     </>
   );
 }

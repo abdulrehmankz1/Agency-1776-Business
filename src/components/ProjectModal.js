@@ -241,13 +241,13 @@ export default function ProjectModal({ open, project, index, onClose }) {
           />
           <div className="relative z-10 flex h-full flex-col justify-between p-4 md:p-6">
             <div className="flex items-start justify-between">
-              <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/85 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)] md:text-xs">
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/85 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)] md:text-sm">
                 {String(index + 1).padStart(2, "0")} / 18
               </span>
               <span className="inline-block h-1.5 w-1.5 bg-accent" />
             </div>
 
-            <div className="text-center font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)] md:text-xs">
+            <div className="text-center font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)] md:text-sm">
               {project.tag}
             </div>
           </div>
@@ -255,7 +255,7 @@ export default function ProjectModal({ open, project, index, onClose }) {
 
         {/* Metadata block */}
         <div className="relative z-10 flex flex-col gap-5 px-5 pb-8 pt-7 md:gap-6 md:px-8 md:pb-10 md:pt-8">
-          <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-foreground/50">
             <span className="inline-block h-1.5 w-1.5 bg-accent" />
             <span>{project.client}</span>
             <span className="h-px w-6 bg-muted" />
@@ -269,7 +269,7 @@ export default function ProjectModal({ open, project, index, onClose }) {
             {project.title}
           </h3>
 
-          <p className="text-sm leading-relaxed text-foreground/70 md:text-[15px]">
+          <p className="text-base font-medium leading-relaxed text-foreground/70">
             {project.role}
           </p>
         </div>

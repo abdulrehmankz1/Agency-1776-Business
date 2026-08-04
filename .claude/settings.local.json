@@ -59,7 +59,24 @@
       "Bash(cmd //c \"cygpath -w /tmp/playwright-test-agency1776.js\")",
       "Bash(git *)",
       "Bash(npx --no-install playwright --version)",
-      "Bash(TARGET_URL=http://localhost:3001 node run.js \"C:\\\\Users\\\\General\\\\AppData\\\\Local\\\\Temp\\\\playwright-test-topbar.js\")"
+      "Bash(TARGET_URL=http://localhost:3001 node run.js \"C:\\\\Users\\\\General\\\\AppData\\\\Local\\\\Temp\\\\playwright-test-topbar.js\")",
+      "Bash(kill %b2xc7c7u5)",
+      "Bash(command -v pdftotext)",
+      "Bash(command -v python)",
+      "Bash(command -v python3)",
+      "Bash(python -c \"import pypdf; print\\('pypdf ok'\\)\")",
+      "Bash(python -c \"import fitz; print\\('fitz ok'\\)\")",
+      "Bash(pdftotext -layout \"Agency 1776 - Business - QA-1.pdf\" -)",
+      "Bash(pdfinfo \"Agency 1776 - Business - QA-1.pdf\")",
+      "Bash(command -v pdfimages)",
+      "Bash(mkdir -p /c/Users/user/AppData/Local/Temp/claude/C--Users-user-Documents-development-claude-projects-Agency-1776-Business/26db7459-c4c3-4cf3-abb3-96dcac8f4262/scratchpad/qa)",
+      "Bash(pdfimages -png -p \"Agency 1776 - Business - QA-1.pdf\" /c/Users/user/AppData/Local/Temp/claude/C--Users-user-Documents-development-claude-projects-Agency-1776-Business/26db7459-c4c3-4cf3-abb3-96dcac8f4262/scratchpad/qa/img)",
+      "Read(//c/Users/user/AppData/Local/Temp/claude/C--Users-user-Documents-development-claude-projects-Agency-1776-Business/26db7459-c4c3-4cf3-abb3-96dcac8f4262/scratchpad/**)",
+      "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
+      "Bash(python -m pip --version)",
+      "Bash(python -m pip install --quiet pymupdf)",
+      "Bash(python -c \"import fitz; print\\('fitz', fitz.__doc__ or 'ok'\\)\")",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }

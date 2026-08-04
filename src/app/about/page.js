@@ -1,39 +1,51 @@
 import PageHero from "@/components/PageHero";
-import AboutStats from "@/sections/about/AboutStats";
-import AboutPrinciples from "@/sections/about/AboutPrinciples";
-import AboutTimeline from "@/sections/about/AboutTimeline";
-import AboutTeam from "@/sections/about/AboutTeam";
-import AboutContact from "@/sections/about/AboutContact";
+import PageCTA from "@/components/PageCTA";
+import CTAButton from "@/components/CTAButton";
+import AboutEcosystem from "@/sections/about/AboutEcosystem";
+import AboutAudiences from "@/sections/about/AboutAudiences";
+import AboutExperience from "@/sections/about/AboutExperience";
+import AboutValues from "@/sections/about/AboutValues";
 
 export const metadata = {
   title: "About · Agency 1776 Business",
   description:
-    "A small studio built around one belief: thoughtful software is still a competitive advantage.",
+    "A specialized agency within the Ops 1776 Group, building the digital systems businesses, campaigns, and nonprofits need to move people to act.",
 };
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About"
-        index="01"
+        showMeta={false}
         backdrop="beams"
         heading={{
-          lead: "A small studio",
-          tail: "built around one belief:",
-          accent: "software is still an edge.",
+          lead: "Digital systems built to",
+          accent: "move people.",
         }}
         description={[
-          "Two designers and three engineers who ship as one team.",
-          "Founded in 2024. Booked through Q4.",
-          "Every engagement gets a senior in the room, every day.",
+          "Agency 1776 is a systems-focused marketing and creative agency",
+          "built for organizations that need measurable outcomes.",
         ]}
       />
-      <AboutStats />
-      <AboutPrinciples />
-      <AboutTimeline />
-      <AboutTeam />
-      <AboutContact />
+      <AboutEcosystem />
+      <AboutAudiences />
+      <AboutExperience />
+      <AboutValues />
+      <PageCTA
+        eyebrow="Start here"
+        heading="Let's build the digital system"
+        accent="your mission deserves."
+      >
+        <CTAButton href="/contact" size="lg">
+          Build a business system
+        </CTAButton>
+        <CTAButton href="/contact" size="lg">
+          Launch a campaign
+        </CTAButton>
+        <CTAButton href="/contact" size="lg">
+          Build a nonprofit system
+        </CTAButton>
+      </PageCTA>
     </>
   );
 }

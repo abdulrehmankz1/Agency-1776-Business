@@ -279,7 +279,7 @@ export default function Nav() {
             >
               <span className="h-2 w-2 bg-accent transition-transform duration-500 group-hover:rotate-45" />
             </span>
-            <span className="whitespace-nowrap text-[11px] uppercase tracking-[0.24em] sm:text-sm sm:tracking-[0.28em]">
+            <span className="whitespace-nowrap text-xs uppercase tracking-[0.24em] sm:text-sm sm:tracking-[0.28em]">
               Agency 1776
             </span>
           </Link>
@@ -301,7 +301,7 @@ export default function Nav() {
                   data-cursor="link"
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "relative inline-flex items-center gap-1.5 whitespace-nowrap px-2 py-3 text-[10px] uppercase tracking-[0.18em] outline-none lg:px-3 lg:text-[11px] lg:tracking-[0.24em]",
+                    "relative inline-flex items-center gap-1.5 whitespace-nowrap px-2 py-3 text-[11px] uppercase tracking-[0.18em] outline-none lg:px-3 lg:text-xs lg:tracking-[0.24em]",
                     isActive ? "text-foreground" : "text-foreground/60 hover:text-foreground"
                   )}
                 >
@@ -317,7 +317,7 @@ export default function Nav() {
                   <span
                     aria-hidden
                     data-nav-bracket
-                    className="inline-block text-accent/80 text-[10px]"
+                    className="inline-block text-accent/80 text-[11px]"
                   >
                     [
                   </span>
@@ -327,7 +327,7 @@ export default function Nav() {
                   <span
                     aria-hidden
                     data-nav-bracket
-                    className="inline-block text-accent/80 text-[10px]"
+                    className="inline-block text-accent/80 text-[11px]"
                   >
                     ]
                   </span>
@@ -433,7 +433,7 @@ export default function Nav() {
             style={{ transform: "translateX(100%)" }}
           >
             <div className="flex items-center justify-between border-b border-muted/30 px-6 py-5">
-              <span className="text-[10px] uppercase tracking-[0.32em] text-foreground/50">
+              <span className="text-[11px] uppercase tracking-[0.32em] text-foreground/50">
                 Menu
               </span>
               <button

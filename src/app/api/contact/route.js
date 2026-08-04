@@ -43,6 +43,7 @@ export async function POST(request) {
   const email = (body.email || "").trim();
   const message = (body.message || "").trim();
   const help = (body.help || "").trim();
+  const leads = (body.leads || "").trim();
   const budget = (body.budget || "").trim();
   const timeline = (body.timeline || "").trim();
 
@@ -68,6 +69,7 @@ export async function POST(request) {
     business: (body.business || "").trim(),
     website: (body.website || "").trim(),
     help,
+    leads,
     budget,
     timeline,
     message,

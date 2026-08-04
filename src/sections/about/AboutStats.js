@@ -26,7 +26,7 @@ export default function AboutStats() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -35,7 +35,7 @@ export default function AboutStats() {
             The numbers / 02
           </span>
         </MaskedLine>
-        <MaskedLine className="max-w-md text-sm leading-relaxed text-foreground/60">
+        <MaskedLine className="max-w-md text-base font-medium leading-relaxed text-foreground/60">
           Updated quarterly. Nothing rounded, nothing softened.
         </MaskedLine>
       </div>
@@ -58,11 +58,11 @@ export default function AboutStats() {
           >
             <span
               data-reveal="icon"
-              className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-5xl"
+              className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-5xl"
             >
               {s.value}
             </span>
-            <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+            <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/50">
               {s.label}
             </MaskedLine>
           </div>

@@ -21,6 +21,8 @@ const TOPBAR_FG      = "#f5f2ec";                    // dark theme --foreground 
 const TOPBAR_FG_HALF = "rgba(245, 242, 236, 0.5)";
 const TOPBAR_FG_45   = "rgba(245, 242, 236, 0.45)";
 const TOPBAR_FG_30   = "rgba(245, 242, 236, 0.3)";
+const TOPBAR_WHITE   = "#ffffff";                    // division tabs — full white for readability
+const TOPBAR_ACCENT  = "#bf0a30";                    // brand crimson (hover feedback)
 
 export default function TopBar() {
   const scopeRef = useRef(null);
@@ -32,8 +34,8 @@ export default function TopBar() {
     const ctx = gsap.context(() => {
       const inactive = scope.querySelectorAll("[data-topbar-tab='inactive']");
       inactive.forEach((el) => {
-        const hoverIn  = () => gsap.to(el, { color: TOPBAR_FG,    duration: 0.35, ease: "power2.out" });
-        const hoverOut = () => gsap.to(el, { color: TOPBAR_FG_45, duration: 0.35, ease: "power2.out" });
+        const hoverIn  = () => gsap.to(el, { color: TOPBAR_ACCENT, duration: 0.35, ease: "power2.out" });
+        const hoverOut = () => gsap.to(el, { color: TOPBAR_WHITE,  duration: 0.35, ease: "power2.out" });
         el.addEventListener("mouseenter", hoverIn);
         el.addEventListener("mouseleave", hoverOut);
       });
@@ -57,7 +59,7 @@ export default function TopBar() {
         </div>
 
         <div
-          className="hidden shrink-0 items-center gap-4 whitespace-nowrap text-[10px] uppercase tracking-[0.28em] lg:flex"
+          className="hidden shrink-0 items-center gap-4 whitespace-nowrap text-[11px] uppercase tracking-[0.28em] lg:flex"
           style={{ color: TOPBAR_FG_HALF }}
         >
           <span className="inline-flex items-center gap-2">
@@ -79,16 +81,19 @@ function TopBarTab({ tab }) {
   return (
     <Wrapper
       href={tab.href || undefined}
+      // Division sites are separate deployments — open them in a new tab
+      // rather than replacing the current one.
+      target={tab.href ? "_blank" : undefined}
+      rel={tab.href ? "noopener noreferrer" : undefined}
       data-topbar-tab={isActive ? "active" : "inactive"}
       data-cursor={tab.href ? "link" : "default"}
       aria-current={isActive ? "page" : undefined}
       role={tab.href ? undefined : "presentation"}
       className={cn(
-        "relative inline-flex select-none items-center whitespace-nowrap px-3 py-2 text-[10px] uppercase tracking-[0.28em] transition-opacity md:px-5 md:text-[11px]",
-        isActive ? "text-accent" : "",
+        "relative inline-flex select-none items-center whitespace-nowrap px-3 py-2 text-[13px] font-semibold uppercase tracking-[0.2em] md:px-5 md:text-sm",
         tab.href ? "cursor-pointer" : "cursor-not-allowed"
       )}
-      style={isActive ? undefined : { color: TOPBAR_FG_45 }}
+      style={{ color: TOPBAR_WHITE }}
       title={!isActive && !tab.href ? "Coming soon" : undefined}
     >
       {isActive && (

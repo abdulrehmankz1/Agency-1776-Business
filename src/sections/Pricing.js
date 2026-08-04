@@ -9,55 +9,39 @@ import { useSectionReveal } from "@/hooks/useSectionReveal";
 import { useScrubReveal } from "@/hooks/useScrubReveal";
 import { useStaggeredGrid } from "@/hooks/useStaggeredGrid";
 
-// Placeholder tiers — copy will change once the client confirms.
+// Two monthly growth partnership tiers. Pricing itself is expressed once,
+// as a shared investment range below the tiers, rather than per-card.
 const TIERS = [
   {
-    id: "sprint",
-    name: "Sprint",
-    lede: "A focused two-week engagement to unblock a single surface.",
-    priceLabel: "Starting at —",
-    price: "$18k",
-    bullets: [
-      "One senior designer + engineer",
-      "Two weeks · one deliverable",
-      "Async by default, weekly review",
-    ],
-    cta: "Book a sprint",
+    id: "starter",
+    name: "Starter Growth System",
+    tag: "Foundations",
+    lede:
+      "Built for businesses that need a professional website, clear messaging, lead capture, CRM foundation, and basic follow-up automation.",
   },
   {
-    id: "retainer",
-    name: "Retainer",
-    lede: "Ongoing product partnership for teams shipping to production.",
-    priceLabel: "Per month —",
-    price: "$28k",
-    bullets: [
-      "Dedicated designer + engineer",
-      "Continuous discovery + delivery",
-      "Roadmap, prototypes, code",
-    ],
-    cta: "Start a retainer",
+    id: "automated",
+    name: "Automated Growth System",
+    tag: "Full system",
+    lede:
+      "Built for businesses that need a fuller lead-generation system with landing pages, funnels, automation flows, stronger CTAs, campaign assets, Meta Ads, Google Ads support, and lead organization.",
     featured: true,
   },
-  {
-    id: "systems",
-    name: "Systems",
-    lede: "Bespoke brand and product system for a company at inflection.",
-    priceLabel: "From —",
-    price: "$140k",
-    bullets: [
-      "Brand + product + engineering",
-      "10 – 14 week engagement",
-      "Coded design system on delivery",
-    ],
-    cta: "Talk systems",
-  },
 ];
+
+const INVESTMENT = {
+  label: "Monthly Investment Range",
+  range: "$1,000–$2,000",
+  unit: "/ month",
+  note:
+    "Most business growth partnerships are expected to fall around $1,000–$2,000 per month, depending on scope, advertising needs, automation complexity, and ongoing support.",
+};
 
 export default function Pricing() {
   const revealRef = useSectionReveal();
   const scrubRef = useScrubReveal();
-  // Column-scrub grid: Retainer (middle) rises first from way below,
-  // Sprint + Systems flank in as scroll continues.
+  // Column-scrub grid: the two partnership tiers rise from below as the
+  // section crosses the viewport.
   const gridRef = useStaggeredGrid();
 
   return (
@@ -67,31 +51,27 @@ export default function Pricing() {
       className="py-32 md:py-48"
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
-      <div className="mb-20 flex flex-col gap-10 md:mb-28 md:flex-row md:items-end md:justify-between">
+      <div className="mb-20 flex flex-col gap-6 md:mb-28">
         <div ref={scrubRef} className="flex flex-col gap-6">
-          <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
                 className="inline-block h-1.5 w-1.5 bg-accent"
               />
-              Engagements / 005
+              Monthly growth partnerships
             </span>
           </MaskedLine>
 
-          <h2 className="max-w-3xl text-[clamp(2.25rem,5.5vw,4rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
-            <ScrubText>Three ways to work together.</ScrubText>
+          <h2 className="max-w-3xl text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+            <ScrubText>Know what you are getting before you start.</ScrubText>
           </h2>
         </div>
-
-        <MaskedLine className="text-sm text-foreground/60">
-          Placeholder pricing — final tiers land after scoping.
-        </MaskedLine>
       </div>
 
       <div
         ref={gridRef}
-        className="chamfer chamfer-md grid grid-cols-1 gap-px bg-muted/40 lg:grid-cols-3"
+        className="chamfer chamfer-md grid grid-cols-1 gap-px bg-muted/40 md:grid-cols-2"
         style={{
           "--chamfer-border-color":
             "color-mix(in srgb, var(--muted) 40%, transparent)",
@@ -102,80 +82,100 @@ export default function Pricing() {
           <PricingCard key={t.id} tier={t} col={i} />
         ))}
       </div>
+
+      <InvestmentPanel />
     </SectionShell>
   );
 }
 
 function PricingCard({ tier, col = 0 }) {
+  // GSAP animates the wrapper; motion animates the inner article.
   return (
-    // GSAP animates the wrapper; motion animates the inner article.
-    // Different DOM elements = different `style.transform` slots =
-    // no fight during entrance scrub + hover.
     <div data-stagger-item data-col={col} className="h-full">
-    <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 320, damping: 26 }}
-      className={
-        (tier.featured ? "bg-surface " : "bg-background ") +
-        "relative flex h-full flex-col gap-8 p-8 md:p-10"
-      }
-      style={{ backgroundImage: "var(--card-pinstripe)" }}
-    >
-      {tier.featured && (
-        <span
-          data-reveal="icon"
-          className="chamfer chamfer-xs absolute right-8 top-8 inline-flex items-center gap-2 px-2 py-1 text-[9px] uppercase tracking-[0.28em] text-accent"
-          style={{ "--chamfer-border-color": "var(--accent)" }}
-        >
-          <span className="relative z-10 h-1 w-1 bg-accent" />
-          <span className="relative z-10">Most fit</span>
-        </span>
-      )}
+      <motion.article
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 320, damping: 26 }}
+        className={
+          (tier.featured ? "bg-surface " : "bg-background ") +
+          "relative flex h-full flex-col gap-6 p-8 md:p-10"
+        }
+        style={{ backgroundImage: "var(--card-pinstripe)" }}
+      >
+        {tier.featured && (
+          <span
+            data-reveal="icon"
+            className="chamfer chamfer-xs absolute right-8 top-8 inline-flex items-center gap-2 px-2 py-1 text-[9px] uppercase tracking-[0.28em] text-accent"
+            style={{ "--chamfer-border-color": "var(--accent)" }}
+          >
+            <span className="relative z-10 h-1 w-1 bg-accent" />
+            <span className="relative z-10">Most complete</span>
+          </span>
+        )}
 
-      <div className="flex flex-col gap-3">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-foreground/50">
+        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-foreground/40">
+          <span data-reveal="icon" className="h-1 w-1 bg-accent" />
+          {tier.tag}
+        </div>
+
+        <MaskedLine
+          as="h3"
+          className="text-2xl font-semibold tracking-[-0.01em] text-foreground"
+        >
           {tier.name}
         </MaskedLine>
-        <p className="max-w-xs text-sm leading-relaxed text-foreground/70">
+
+        <p className="max-w-md text-base font-medium leading-relaxed text-foreground/70">
           <MaskedLine>{tier.lede}</MaskedLine>
+        </p>
+      </motion.article>
+    </div>
+  );
+}
+
+function InvestmentPanel() {
+  return (
+    <div
+      className="chamfer chamfer-md relative mt-12 flex flex-col gap-8 p-8 md:mt-16 md:flex-row md:items-center md:justify-between md:gap-12 md:p-12"
+      style={{
+        "--chamfer-border-color":
+          "color-mix(in srgb, var(--muted) 55%, transparent)",
+        "--chamfer-bg": "var(--surface)",
+        backgroundImage: "var(--card-pinstripe)",
+      }}
+    >
+      <div className="relative z-10 flex flex-col gap-4">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <span className="inline-flex items-center gap-3">
+            <span
+              data-reveal="icon"
+              className="inline-block h-1.5 w-1.5 bg-accent"
+            />
+            {INVESTMENT.label}
+          </span>
+        </MaskedLine>
+
+        <div className="flex items-baseline gap-3">
+          <MaskedLine
+            innerClassName="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-semibold tracking-[-0.02em] text-foreground"
+            className="leading-[1]"
+          >
+            {INVESTMENT.range}
+          </MaskedLine>
+          <span className="text-sm uppercase tracking-[0.2em] text-foreground/45">
+            {INVESTMENT.unit}
+          </span>
+        </div>
+
+        <p className="max-w-2xl text-base font-medium leading-relaxed text-foreground/70">
+          <MaskedLine>{INVESTMENT.note}</MaskedLine>
         </p>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/40">
-          {tier.priceLabel}
-        </MaskedLine>
-        <MaskedLine
-          innerClassName="font-display text-5xl font-medium tracking-[-0.02em] text-foreground"
-          className="text-5xl leading-[1]"
-        >
-          {tier.price}
-        </MaskedLine>
+      <div data-reveal="icon" className="relative z-10 shrink-0">
+        <CTAButton href="/pricing" size="lg">
+          View pricing
+        </CTAButton>
       </div>
-
-      <ul className="flex flex-col gap-3 border-t border-muted/50 pt-6">
-        {tier.bullets.map((b, i) => (
-          <li
-            key={i}
-            className="flex items-start gap-3 text-sm text-foreground/80"
-          >
-            <span
-              data-reveal="icon"
-              className="mt-2 h-1 w-1 shrink-0 bg-accent"
-            />
-            <MaskedLine>{b}</MaskedLine>
-          </li>
-        ))}
-      </ul>
-
-      <CTAButton
-        href="/contact"
-        variant={tier.featured ? "solid" : "primary"}
-        className="mt-auto"
-      >
-        {tier.cta}
-      </CTAButton>
-    </motion.article>
     </div>
   );
 }

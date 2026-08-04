@@ -24,7 +24,7 @@ export default function AboutTeam() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -33,7 +33,7 @@ export default function AboutTeam() {
             The bench / 05
           </span>
         </MaskedLine>
-        <MaskedLine className="max-w-md text-sm leading-relaxed text-foreground/60">
+        <MaskedLine className="max-w-md text-base font-medium leading-relaxed text-foreground/60">
           Five full-time. Drag or swipe to meet each one.
         </MaskedLine>
       </div>
@@ -71,7 +71,7 @@ function TeamCard({ member }) {
             {member.name.split(" ").map((s) => s[0]).slice(0, 2).join("")}
           </span>
         </span>
-        <div className="flex flex-col items-end gap-1 text-[10px] uppercase tracking-[0.32em] text-foreground/40">
+        <div className="flex flex-col items-end gap-1 text-[11px] uppercase tracking-[0.32em] text-foreground/40">
           <span>{member.city}</span>
           <span className="inline-block h-1 w-8 bg-accent" />
         </div>
@@ -82,15 +82,15 @@ function TeamCard({ member }) {
       </blockquote>
 
       <div className="flex flex-col gap-3">
-        <h3 className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl">
+        <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl">
           {member.name}
         </h3>
-        <span className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <span className="text-[11px] uppercase tracking-[0.32em] text-accent">
           {member.role}
         </span>
       </div>
 
-      <p className="mt-auto text-sm leading-relaxed text-foreground/65">
+      <p className="mt-auto text-base font-medium leading-relaxed text-foreground/65">
         {member.bio}
       </p>
     </article>

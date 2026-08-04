@@ -9,29 +9,23 @@ import { useSectionReveal } from "@/hooks/useSectionReveal";
 import { useScrubReveal } from "@/hooks/useScrubReveal";
 
 /**
- * Contact — homepage's closing conversion moment. Stripped to a centered
- * eyebrow + heading + primary CTA so the finale reads as a single focused
- * prompt to the dedicated `/contact` page (where the full brief form and
- * studio channels live). Heading rides the studio's particle
- * materialisation (ScrubText per-char + useScrubReveal); CTA button
- * reuses the sitewide `<CTAButton>` primary-outline styling and hover
- * choreography.
+ * AboutExperience — centered statement of what working with Agency 1776
+ * brings together, closing on a "view our work" CTA.
  */
-
-export default function Contact() {
+export default function AboutExperience() {
   const revealRef = useSectionReveal();
   const scrubRef = useScrubReveal();
 
   return (
     <SectionShell
-      id="contact"
+      id="experience"
       ref={revealRef}
       className="py-32 md:py-48"
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div
         ref={scrubRef}
-        className="mx-auto flex max-w-[64rem] flex-col items-center gap-10 text-center md:gap-14"
+        className="mx-auto flex max-w-[68rem] flex-col items-center gap-10 text-center md:gap-12"
       >
         <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
@@ -39,18 +33,26 @@ export default function Contact() {
               data-reveal="icon"
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            Contact
+            The experience
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,5vw,4.25rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
-          <ScrubText>Ready to build a growth system that</ScrubText>{" "}
-          <StencilFill className="text-accent">works after the click?</StencilFill>
+        <h2 className="text-[clamp(2rem,5.5vw,4.25rem)] font-semibold leading-[1.03] tracking-[-0.02em] text-foreground">
+          <ScrubText>The Agency 1776</ScrubText>{" "}
+          <StencilFill className="text-accent">experience.</StencilFill>
         </h2>
 
+        <p className="max-w-2xl text-base font-medium leading-relaxed text-foreground/75">
+          <MaskedLine>
+            We bring together strategy, messaging, design, and execution to
+            build digital systems that support real outcomes: leads, voters,
+            donors, supporters, inquiries, bookings, and momentum.
+          </MaskedLine>
+        </p>
+
         <div data-reveal="icon">
-          <CTAButton href="/contact" size="lg">
-            Start a project
+          <CTAButton href="/work" size="lg">
+            View our work
           </CTAButton>
         </div>
       </div>

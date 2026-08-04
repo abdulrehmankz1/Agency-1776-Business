@@ -8,8 +8,9 @@ import { useScrubReveal } from "@/hooks/useScrubReveal";
 import { useStaggeredGrid } from "@/hooks/useStaggeredGrid";
 
 /**
- * ValueGrid — the 4-step playbook. Four cards laid out as a full-width
- * horizontal filmstrip at xl (2×2 at md-lg, stacked at sm), each a
+ * ValueGrid — the 5-stage growth playbook (Attract → Capture → Organize
+ * → Follow Up → Convert). Five cards laid out as a full-width horizontal
+ * filmstrip at xl (3-up at lg, 2-up at md, stacked at sm), each a
  * distinct chamfered cell with a display-face numeral, a bespoke line
  * glyph with a subtle CSS-only idle loop, and a step footer.
  *
@@ -28,30 +29,37 @@ import { useStaggeredGrid } from "@/hooks/useStaggeredGrid";
 const CARDS = [
   {
     n: "01",
-    title: "Attract the Right Visitors",
+    title: "Attract",
     body:
-      "Your website helps you bring people who are actually looking for your services. Build it right.",
+      "Your website, funnels, Meta Ads, Google Ads, landing pages, and marketing assets help bring the right people into your business ecosystem.",
     Icon: AttractGlyph,
   },
   {
     n: "02",
-    title: "Build Instant Trust",
+    title: "Capture",
     body:
-      "A professional website shows your credibility and sets you apart from competitors.",
-    Icon: TrustGlyph,
+      "Forms, CTAs, booking links, quote requests, lead magnets, and campaign landing pages collect visitor information.",
+    Icon: CaptureGlyph,
   },
   {
     n: "03",
-    title: "Explain Your Offer Clearly",
+    title: "Organize",
     body:
-      "Clear messaging, strong CTAs, and smart structure guide people to take action.",
-    Icon: ExplainGlyph,
+      "CRM setup and lead flow structure help route inquiries into a cleaner system so they are easier to track, manage, and follow up with.",
+    Icon: OrganizeGlyph,
   },
   {
     n: "04",
-    title: "Help Your Business Grow",
+    title: "Follow Up",
     body:
-      "More leads, more inquiries, and more opportunities to win new business.",
+      "Marketing automation helps your business respond faster, nurture interest, send reminders, and stay in front of people after they show interest.",
+    Icon: FollowUpGlyph,
+  },
+  {
+    n: "05",
+    title: "Convert",
+    body:
+      "Strong offers, funnels, and consistent follow-up help move leads toward calls, bookings, estimates, and sales conversations.",
     Icon: GrowGlyph,
   },
 ];
@@ -69,19 +77,19 @@ export default function ValueGrid() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="flex max-w-[68rem] flex-col items-start gap-8">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            The playbook / 002
+            The playbook
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,4.75vw,3.75rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,4.75vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
           <ScrubText mode="word">
-            Help your business grow every day with a website that works like a sales asset.
+            Help your business grow every day.
           </ScrubText>
         </h2>
       </div>
@@ -91,8 +99,8 @@ export default function ValueGrid() {
           data-reveal="icon"
           className="h-px w-16 bg-muted/60 md:w-24"
         />
-        <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/45">
-          Four outcomes · one system
+        <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/45">
+          Five stages · one system
         </MaskedLine>
         <span
           data-reveal="icon"
@@ -103,7 +111,7 @@ export default function ValueGrid() {
 
       <div
         ref={gridRef}
-        className="chamfer chamfer-md mt-8 grid grid-cols-1 gap-px bg-muted/40 md:mt-10 md:grid-cols-2 xl:grid-cols-4"
+        className="chamfer chamfer-md mt-8 grid grid-cols-1 gap-px bg-muted/40 md:mt-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
         style={{
           "--chamfer-border-color":
             "color-mix(in srgb, var(--muted) 40%, transparent)",
@@ -130,7 +138,7 @@ function ValueCard({ n, title, body, Icon, col }) {
       <div className="flex items-start justify-between gap-4">
         <span
           data-reveal="icon"
-          className="font-display text-4xl font-medium leading-none tracking-[-0.02em] text-foreground/85 md:text-5xl"
+          className="font-display text-4xl font-semibold leading-none tracking-[-0.02em] text-foreground/85 md:text-5xl"
         >
           {n}
         </span>
@@ -143,16 +151,16 @@ function ValueCard({ n, title, body, Icon, col }) {
       <div className="flex flex-col gap-4">
         <MaskedLine
           as="h3"
-          className="text-[13px] font-medium uppercase leading-[1.35] tracking-[0.18em] text-foreground md:text-sm"
+          className="text-sm font-semibold uppercase leading-[1.35] tracking-[0.18em] text-foreground"
         >
           {title}
         </MaskedLine>
-        <p className="text-sm leading-relaxed text-foreground/60">
+        <p className="text-base font-medium leading-relaxed text-foreground/60">
           <MaskedLine>{body}</MaskedLine>
         </p>
       </div>
 
-      <div className="mt-auto flex items-center gap-3 pt-2 text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+      <div className="mt-auto flex items-center gap-3 pt-2 text-[11px] uppercase tracking-[0.28em] text-foreground/40">
         <span
           data-reveal="icon"
           className="inline-block h-px w-6 bg-foreground/30 transition-all duration-500 group-hover:w-12 group-hover:bg-accent"
@@ -186,50 +194,76 @@ function AttractGlyph(props) {
   );
 }
 
-function TrustGlyph(props) {
-  // Shield outline; interior check-mark traces on a loop via `.glyph-trace`.
+function CaptureGlyph(props) {
+  // Funnel converging to a stem; the captured lead dot pulses via `.glyph-pulse`.
   return (
     <svg viewBox="0 0 40 40" fill="none" {...props}>
       <path
-        d="M20 3L34 8v13c0 8-6 13-14 16-8-3-14-8-14-16V8L20 3z"
+        d="M5 7L35 7L22 22V33H18V22L5 7Z"
         stroke="currentColor"
         strokeWidth="1"
-      />
-      <path
-        d="M13 21l5 5 10-11"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
         strokeLinejoin="round"
-        pathLength="1"
-        className="glyph-trace"
+      />
+      <circle
+        cx="20"
+        cy="37"
+        r="1.8"
+        fill="currentColor"
+        className="glyph-pulse"
       />
     </svg>
   );
 }
 
-function ExplainGlyph(props) {
-  // Speech bubble with two aligned lines; corner dot blinks via `.glyph-blink`.
+function OrganizeGlyph(props) {
+  // Three stacked CRM rows, each led by a marker; the last marker blinks.
   return (
     <svg viewBox="0 0 40 40" fill="none" {...props}>
+      <rect x="6" y="8" width="28" height="7" stroke="currentColor" strokeWidth="1" />
+      <rect x="6" y="17" width="28" height="7" stroke="currentColor" strokeWidth="1" />
+      <rect x="6" y="26" width="28" height="7" stroke="currentColor" strokeWidth="1" />
       <path
-        d="M6 8h28v18H22l-6 6-6-6H6z"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11 14h18M11 20h12"
+        d="M22 11.5h8M22 20.5h8M22 29.5h8"
         stroke="currentColor"
         strokeWidth="1"
         strokeLinecap="round"
       />
+      <circle cx="10.5" cy="11.5" r="1.4" fill="currentColor" />
+      <circle cx="10.5" cy="20.5" r="1.4" fill="currentColor" />
       <circle
-        cx="33"
-        cy="32"
-        r="2"
+        cx="10.5"
+        cy="29.5"
+        r="1.4"
         fill="currentColor"
         className="glyph-blink"
+      />
+    </svg>
+  );
+}
+
+function FollowUpGlyph(props) {
+  // Return-loop arrow for repeated nurture; center dot pulses via `.glyph-pulse`.
+  return (
+    <svg viewBox="0 0 40 40" fill="none" {...props}>
+      <path
+        d="M32 20a12 12 0 1 1-3.5-8.5"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
+      <path
+        d="M31 6v6h-6"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle
+        cx="20"
+        cy="20"
+        r="1.8"
+        fill="currentColor"
+        className="glyph-pulse"
       />
     </svg>
   );

@@ -22,7 +22,7 @@ export default function WorkClients() {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -31,7 +31,7 @@ export default function WorkClients() {
             Under NDA / 03
           </span>
         </MaskedLine>
-        <MaskedLine className="max-w-md text-sm leading-relaxed text-foreground/60">
+        <MaskedLine className="max-w-md text-base font-medium leading-relaxed text-foreground/60">
           A dozen more we can't publish. Ask on a call.
         </MaskedLine>
       </div>

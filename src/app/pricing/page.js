@@ -1,8 +1,6 @@
 import PageHero from "@/components/PageHero";
-import CTAButton from "@/components/CTAButton";
 import PricingTiers from "@/sections/pricing/PricingTiers";
-import PricingComparison from "@/sections/pricing/PricingComparison";
-import PricingFAQ from "@/sections/pricing/PricingFAQ";
+import PricingCustom from "@/sections/pricing/PricingCustom";
 
 export const metadata = {
   title: "Pricing · Agency 1776 Business",
@@ -14,26 +12,20 @@ export default function PricingPage() {
   return (
     <>
       <PageHero
-        eyebrow="Engagements"
-        index="005"
+        showMeta={false}
         backdrop="pulse"
         heading={{
-          lead: "Three ways",
-          tail: "to work together.",
-          accent: "No mystery fees.",
+          lead: "Automation plans",
+          tail: "for your",
+          accent: "business.",
         }}
         description={[
-          "Sprint, Retainer, or a bespoke Systems build.",
-          "Every number below is the starting point — scope moves it up, never down.",
+          "Most business growth partnerships are expected to range from $1,000–$2,000 per month,",
+          "depending on scope, automation needs, ad support, campaign volume, and ongoing optimization.",
         ]}
-      >
-        <CTAButton href="/contact" size="lg">
-          Book a call
-        </CTAButton>
-      </PageHero>
+      />
       <PricingTiers />
-      <PricingComparison />
-      <PricingFAQ />
+      <PricingCustom />
     </>
   );
 }

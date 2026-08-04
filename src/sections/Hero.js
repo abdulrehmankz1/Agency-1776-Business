@@ -11,33 +11,6 @@ import HeroBackdrop from "@/components/HeroBackdrop";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import { useScrubReveal } from "@/hooks/useScrubReveal";
 
-function BrandMark(props) {
-  // 5px chamfer on a 46px outer stroke — matches the site-wide chamfered
-  // corner treatment at a small icon scale.
-  return (
-    <svg
-      data-reveal="icon"
-      viewBox="0 0 48 48"
-      fill="none"
-      className="h-9 w-9"
-      {...props}
-    >
-      <polygon
-        points="6,1 42,1 47,6 47,42 42,47 6,47 1,42 1,6"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-      <path
-        d="M12 34 24 14 36 34"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinejoin="round"
-      />
-      <path d="M17 34h14" stroke="currentColor" strokeWidth="1.25" />
-    </svg>
-  );
-}
-
 export default function Hero() {
   const revealRef = useSectionReveal({ start: "top bottom" });
   // Hero is always at the top of the page, so its heading materializes
@@ -55,29 +28,6 @@ export default function Hero() {
       innerClassName="mx-auto flex min-h-[100svh] max-w-[1600px] flex-col px-6 pt-28 pb-10 md:px-16 md:pt-32 md:pb-14"
       backdrop={<HeroBackdrop />}
     >
-      <div className="flex items-start justify-between gap-8">
-        <div className="flex items-center gap-6 text-foreground">
-          <BrandMark />
-          <div className="flex flex-col gap-1">
-            <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-foreground/60">
-              Independent design & engineering
-            </MaskedLine>
-            <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-foreground/40">
-              Est. MMXXIV — Global
-            </MaskedLine>
-          </div>
-        </div>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <span
-            data-reveal="icon"
-            className="inline-flex h-2 w-2 rounded-full bg-accent"
-          />
-          <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-foreground/60">
-            Booking Q4 · limited slots
-          </MaskedLine>
-        </div>
-      </div>
 
       {/*
         Heading + description/CTAs live inside a single flex-1 block so the
@@ -87,33 +37,33 @@ export default function Hero() {
       */}
       <div className="flex flex-1 flex-col justify-center gap-10 md:gap-12">
         <div ref={scrubRef} className="max-w-[70rem]">
-          <h1 className="font-display text-[clamp(2.5rem,7.5vw,6.75rem)] leading-[0.95] tracking-[-0.01em] text-foreground [word-break:normal]">
+          <h1 className="font-display text-[clamp(2.25rem,6.5vw,5.75rem)] leading-[0.98] tracking-[-0.01em] text-foreground [word-break:normal]">
             <span className="block">
-              <ScrubText>Building Websites</ScrubText>
+              <ScrubText>Build an automated growth system</ScrubText>
             </span>
             <span className="block text-foreground/70">
-              <ScrubText>That Bring Businesses</ScrubText>
+              <ScrubText>that helps your business generate</ScrubText>
             </span>
             <span className="block">
               <StencilFill immediate className="text-accent">
-                More Leads.
+                more leads.
               </StencilFill>
             </span>
           </h1>
         </div>
 
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-        <p className="max-w-lg text-sm leading-relaxed text-foreground/70">
-          <MaskedLine block>Agency 1776 builds business websites for owners</MaskedLine>
-          <MaskedLine block>
-            who want to build trust, explain offers clearly,
+        <p className="max-w-lg text-base font-medium leading-relaxed text-foreground/70">
+          <MaskedLine>
+            It is a monthly growth partnership built to help your business
+            attract the right people, capture their information, follow up
+            faster, and turn interest into real opportunities.
           </MaskedLine>
-          <MaskedLine block>and turn visitors into leads.</MaskedLine>
         </p>
 
         <div className="flex flex-wrap items-center gap-4">
-          <CTAButton href="/services" size="lg">
-            View services
+          <CTAButton href="/contact" size="lg">
+            Get more leads
           </CTAButton>
           {(() => {
             const MotionLink = motion.create(Link);
@@ -124,9 +74,9 @@ export default function Hero() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 480, damping: 28 }}
                 data-cursor="link"
-                className="inline-flex items-center gap-4 px-2 py-4 text-xs uppercase tracking-[0.24em] text-foreground"
+                className="inline-flex items-center gap-4 px-2 py-4 text-sm uppercase tracking-[0.24em] text-foreground"
               >
-                Explore our portfolio
+                See all our work
                 <span className="inline-block h-px w-6 bg-foreground" />
               </MotionLink>
             );
