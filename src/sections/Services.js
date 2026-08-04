@@ -208,7 +208,7 @@ export default function Services() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="flex max-w-[64rem] flex-col gap-8">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -218,7 +218,7 @@ export default function Services() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.04] tracking-[-0.01em] text-foreground">
           <ScrubText>A complete business automation system</ScrubText>{" "}
           <span className="text-foreground/60">
             <ScrubText>built like a growth system.</ScrubText>
@@ -270,7 +270,7 @@ function ServiceCard({ n, title, body, Icon, col = 0 }) {
         <div className="flex flex-col gap-3">
           <MaskedLine
             as="h3"
-            className="text-lg font-semibold leading-[1.2] tracking-[-0.01em] text-foreground"
+            className="text-lg md:text-xl font-semibold leading-[1.2] tracking-[0.03em] text-foreground"
           >
             {title}
           </MaskedLine>

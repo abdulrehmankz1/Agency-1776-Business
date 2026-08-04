@@ -24,7 +24,7 @@ export default function Overview() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="flex max-w-[64rem] flex-col gap-10">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -34,7 +34,7 @@ export default function Overview() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(1.6rem,3.4vw,2.9rem)] font-semibold leading-[1.14] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(1.6rem,3.4vw,2.9rem)] font-medium leading-[1.14] tracking-[0.02em] text-foreground">
           <ScrubText mode="word">
             Agency 1776 helps businesses build the complete digital system
             behind growth:

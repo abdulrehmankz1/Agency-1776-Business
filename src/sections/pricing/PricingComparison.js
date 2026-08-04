@@ -29,7 +29,7 @@ export default function PricingComparison() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div className="mb-12 flex flex-col gap-6" ref={scrubRef}>
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"

@@ -218,7 +218,7 @@ export default function ContactForm() {
     >
       <div className="grid gap-14 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-24">
         <div ref={scrubRef} className="flex flex-col gap-8">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -251,7 +251,7 @@ export default function ContactForm() {
         >
           <div
             data-reveal="icon"
-            className="flex items-center justify-between text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground"
+            className="flex items-center justify-between text-sm font-medium uppercase tracking-[0.2em] text-foreground/70 light:text-foreground"
           >
             <span className="inline-flex items-center gap-3">
               <span className="h-1.5 w-1.5 bg-accent" />
@@ -287,7 +287,7 @@ export default function ContactForm() {
           </div>
 
           <label className="flex flex-col gap-3">
-            <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
+            <MaskedLine className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/70 light:text-foreground">
               Message
             </MaskedLine>
             <textarea
@@ -300,7 +300,7 @@ export default function ContactForm() {
           </label>
 
           <fieldset className="flex flex-col gap-4 border-t border-muted/40 pt-8">
-            <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
+            <MaskedLine className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/70 light:text-foreground">
               SMS preferences
             </MaskedLine>
 
@@ -372,7 +372,7 @@ export default function ContactForm() {
 function Field({ name, label, type, placeholder, required, autoComplete }) {
   return (
     <label className="flex flex-col gap-3">
-      <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
+      <MaskedLine className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/70 light:text-foreground">
         {label}
       </MaskedLine>
       <input
@@ -390,7 +390,7 @@ function Field({ name, label, type, placeholder, required, autoComplete }) {
 function PhoneField({ name, label, placeholder, autoComplete, value, onChange }) {
   return (
     <label className="flex flex-col gap-3">
-      <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
+      <MaskedLine className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/70 light:text-foreground">
         {label}
       </MaskedLine>
       <input
@@ -442,7 +442,7 @@ function ConsentCheckbox({ checked, onChange, disabled, required, children }) {
 function SelectField({ label, options, value, onChange }) {
   return (
     <div className="flex flex-col gap-3">
-      <MaskedLine className="text-sm font-semibold uppercase tracking-[0.28em] text-foreground/70 light:text-foreground">
+      <MaskedLine className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/70 light:text-foreground">
         {label}
       </MaskedLine>
       <ThemedSelect

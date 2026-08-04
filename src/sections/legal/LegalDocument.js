@@ -101,7 +101,7 @@ export default function LegalDocument({ lastUpdated, intro, sections }) {
               </span>
               <MaskedLine
                 as="h2"
-                className="text-xl font-semibold leading-[1.2] tracking-[-0.01em] text-foreground md:text-2xl"
+                className="text-xl font-medium leading-[1.2] tracking-[-0.01em] text-foreground md:text-2xl"
               >
                 {section.heading}
               </MaskedLine>

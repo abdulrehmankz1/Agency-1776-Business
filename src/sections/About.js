@@ -38,7 +38,7 @@ export default function About() {
     >
       <div className="grid gap-16 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-24">
         <div ref={scrubRef} className="flex flex-col gap-10">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"

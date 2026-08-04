@@ -31,7 +31,7 @@ export default function PricingFAQ() {
       innerClassName="mx-auto max-w-[1200px] px-6 md:px-16"
     >
       <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"

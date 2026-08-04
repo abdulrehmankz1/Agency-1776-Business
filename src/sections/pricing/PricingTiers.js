@@ -95,7 +95,7 @@ export default function PricingTiers() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="mb-14 flex max-w-[64rem] flex-col gap-6 md:mb-20">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -105,7 +105,7 @@ export default function PricingTiers() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.04] tracking-[0.02em] text-foreground">
           <ScrubText>Choose the plan that matches</ScrubText>{" "}
           <span className="text-foreground/60">
             <ScrubText>the stage of your business.</ScrubText>
@@ -135,7 +135,7 @@ export default function PricingTiers() {
             >
               <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent">
+                  <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
                     {t.name}
                   </MaskedLine>
                   {t.featured && (
@@ -154,7 +154,7 @@ export default function PricingTiers() {
                 </div>
                 <MaskedLine
                   as="h3"
-                  className="text-2xl font-semibold leading-[1.2] tracking-[-0.01em] text-foreground md:text-[1.75rem]"
+                  className="text-2xl font-semibold leading-[1.2] tracking-[0.02em] text-foreground md:text-[1.75rem]"
                 >
                   {t.tagline}
                 </MaskedLine>

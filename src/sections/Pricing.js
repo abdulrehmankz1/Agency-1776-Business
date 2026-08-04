@@ -53,7 +53,7 @@ export default function Pricing() {
     >
       <div className="mb-20 flex flex-col gap-6 md:mb-28">
         <div ref={scrubRef} className="flex flex-col gap-6">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -63,7 +63,7 @@ export default function Pricing() {
             </span>
           </MaskedLine>
 
-          <h2 className="max-w-3xl text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="max-w-3xl text-[clamp(2.25rem,5.5vw,4rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText>Know what you are getting before you start.</ScrubText>
           </h2>
         </div>
@@ -107,8 +107,8 @@ function PricingCard({ tier, col = 0 }) {
             className="chamfer chamfer-xs absolute right-8 top-8 inline-flex items-center gap-2 px-2 py-1 text-[9px] uppercase tracking-[0.28em] text-accent"
             style={{ "--chamfer-border-color": "var(--accent)" }}
           >
-            <span className="relative z-10 h-1 w-1 bg-accent" />
-            <span className="relative z-10">Most complete</span>
+            <span className="relative z-10 h-1 w-1 bg-white" />
+            <span className="relative z-10 text-white">Most complete</span>
           </span>
         )}
 
@@ -119,7 +119,7 @@ function PricingCard({ tier, col = 0 }) {
 
         <MaskedLine
           as="h3"
-          className="text-2xl font-semibold tracking-[-0.01em] text-foreground"
+          className="text-2xl font-medium tracking-[0.02em] text-foreground"
         >
           {tier.name}
         </MaskedLine>
@@ -144,7 +144,7 @@ function InvestmentPanel() {
       }}
     >
       <div className="relative z-10 flex flex-col gap-4">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"

@@ -60,7 +60,7 @@ export default function Footer() {
               aria-hidden
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+            <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
               Agency 1776
             </MaskedLine>
           </div>

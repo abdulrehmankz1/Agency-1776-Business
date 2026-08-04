@@ -62,7 +62,7 @@ function Overview({ project }) {
 function Meta({ label, value }) {
   return (
     <div className="flex flex-col gap-2 border-l border-muted/40 pl-4">
-      <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
+      <MaskedLine className="text-xs uppercase tracking-[0.28em] text-accent font-bold">
         {label}
       </MaskedLine>
       <MaskedLine className="text-base font-medium text-foreground/85">{value}</MaskedLine>
@@ -83,7 +83,7 @@ function ProblemApproach({ project }) {
     >
       <div className="grid gap-16 md:grid-cols-2 md:gap-24">
         <div ref={scrubRef} className="flex flex-col gap-6 md:sticky md:top-40 md:self-start">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -100,7 +100,7 @@ function ProblemApproach({ project }) {
 
         <div className="flex flex-col gap-14">
           <div className="flex flex-col gap-4">
-            <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+            <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
               Problem
             </MaskedLine>
             <p className="text-lg font-medium leading-relaxed text-foreground/85 md:text-xl">
@@ -108,7 +108,7 @@ function ProblemApproach({ project }) {
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+            <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
               Approach
             </MaskedLine>
             <p className="text-lg font-medium leading-relaxed text-foreground/85 md:text-xl">
@@ -132,7 +132,7 @@ function Metrics({ project }) {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -186,7 +186,7 @@ function StackAndScope({ project }) {
     >
       <div className="grid gap-12 md:grid-cols-2 md:gap-24">
         <div className="flex flex-col gap-6">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -213,7 +213,7 @@ function StackAndScope({ project }) {
           </ul>
         </div>
         <div className="flex flex-col gap-6">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -244,7 +244,7 @@ function NextProject({ currentSlug }) {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -270,7 +270,7 @@ function NextProject({ currentSlug }) {
           {next.id} · {next.year}
         </span>
         <div className="flex flex-col gap-3">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.28em] text-accent font-bold">
             {next.client} · {next.tag}
           </MaskedLine>
           <MaskedLine
@@ -282,7 +282,7 @@ function NextProject({ currentSlug }) {
         </div>
         <span
           data-reveal="icon"
-          className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-accent md:self-end"
+          className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-accent font-bold md:self-end"
         >
           Read case
           <span className="inline-block h-px w-8 bg-accent transition-[width] duration-500 group-hover:w-16" />
