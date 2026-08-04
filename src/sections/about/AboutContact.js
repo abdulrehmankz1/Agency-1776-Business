@@ -28,7 +28,7 @@ export default function AboutContact() {
     >
       <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div ref={scrubRef} className="flex flex-col gap-6">
-          <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -37,7 +37,7 @@ export default function AboutContact() {
               Next / 06
             </span>
           </MaskedLine>
-          <h2 className="max-w-2xl text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="max-w-2xl text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText>Booking Q1 2027 —</ScrubText>{" "}
             <StencilFill className="text-accent">talk soon.</StencilFill>
           </h2>
@@ -56,7 +56,7 @@ export default function AboutContact() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 480, damping: 28 }}
                 data-cursor="link"
-                className="inline-flex items-center gap-4 px-2 py-4 text-xs uppercase tracking-[0.24em] text-foreground"
+                className="inline-flex items-center gap-4 px-2 py-4 text-sm uppercase tracking-[0.24em] text-foreground"
               >
                 See the work
                 <span className="inline-block h-px w-6 bg-foreground" />

@@ -4,60 +4,87 @@ import { motion } from "motion/react";
 import SectionShell from "@/components/SectionShell";
 import CTAButton from "@/components/CTAButton";
 import { MaskedLine } from "@/components/MaskedLine";
+import { ScrubText } from "@/components/ScrubText";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
+import { useScrubReveal } from "@/hooks/useScrubReveal";
 import { useStaggeredGrid } from "@/hooks/useStaggeredGrid";
 
+// Two monthly growth partnership plans. Price is expressed once as a
+// shared range in the section header rather than per-card.
 const TIERS = [
   {
-    id: "sprint",
-    name: "Sprint",
-    lede: "A focused two-week engagement to unblock a single surface.",
-    priceLabel: "Starting at —",
-    price: "$18k",
-    bullets: [
-      "One senior designer + engineer",
-      "Two weeks · one deliverable",
-      "Async by default, weekly review",
-      "Written recommendation on next step",
-      "Files + code you own outright",
+    id: "starter",
+    name: "Starter Growth System",
+    tagline:
+      "Built for businesses that need a professional digital foundation and lead-capture system.",
+    lede: "The Starter Growth System is for businesses that need a clear online presence, better messaging, basic CRM structure, lead capture, and simple follow-up automation.",
+    bestFor: [
+      "New businesses",
+      "Local service businesses",
+      "Small teams",
+      "Businesses with outdated websites",
+      "Owners who need a stronger digital foundation",
+      "Businesses that need basic lead capture",
+      "Businesses preparing for future ad campaigns",
     ],
-    cta: "Book a sprint",
+    includes: [
+      "Growth system strategy",
+      "Core website pages",
+      "Clear brand messaging",
+      "Custom website design",
+      "Mobile-responsive build",
+      "Contact form setup",
+      "Quote or inquiry path",
+      "Basic CRM / lead organization setup",
+      "Basic follow-up automation",
+      "Basic SEO foundation",
+      "Launch support",
+      "Monthly system support",
+    ],
+    cta: "Start with Starter",
   },
   {
-    id: "retainer",
-    name: "Retainer",
-    lede: "Ongoing product partnership for teams shipping to production.",
-    priceLabel: "Per month —",
-    price: "$28k",
-    bullets: [
-      "Dedicated designer + engineer",
-      "Continuous discovery + delivery",
-      "Roadmap, prototypes, code",
-      "Slack channel with same-day answers",
-      "Quarterly review with founders",
+    id: "automated",
+    name: "Automated Growth System",
+    tagline:
+      "Built for businesses that need websites, funnels, automation, ads, and stronger follow-up.",
+    lede: "The Automated Growth System is for businesses that need more than a basic website. It is built around lead generation, landing pages, funnels, automation flows, CRM-style organization, paid ad support, and conversion-focused marketing.",
+    bestFor: [
+      "Growing businesses",
+      "Service-based companies",
+      "Businesses running Meta Ads",
+      "Businesses running Google Ads",
+      "Businesses needing more leads and customers",
+      "Businesses losing leads from slow follow-up",
+      "Companies ready for ongoing marketing support",
+      "Companies ready to automate parts of their sales process",
     ],
-    cta: "Start a retainer",
+    includes: [
+      "Everything in Starter",
+      "Expanded website structure",
+      "Landing pages and funnels",
+      "Lead capture setup",
+      "CRM / lead flow setup",
+      "Follow-up automation",
+      "Conversion-focused copy",
+      "Service page strategy",
+      "Stronger CTA structure",
+      "Campaign asset support",
+      "Meta Ads support",
+      "Google Ads support",
+      "SEO-ready page setup",
+      "Lead organization support",
+      "Monthly optimization support",
+      "Launch support",
+    ],
+    cta: "Choose Automated Growth",
     featured: true,
-  },
-  {
-    id: "systems",
-    name: "Systems",
-    lede: "Bespoke brand and product system for a company at inflection.",
-    priceLabel: "From —",
-    price: "$140k",
-    bullets: [
-      "Brand + product + engineering",
-      "10 – 14 week engagement",
-      "Coded design system on delivery",
-      "Launch film + press kit",
-      "60-day post-launch care",
-    ],
-    cta: "Talk systems",
   },
 ];
 
 export default function PricingTiers() {
   const revealRef = useSectionReveal();
+  const scrubRef = useScrubReveal();
   const gridRef = useStaggeredGrid();
 
   return (
@@ -67,9 +94,28 @@ export default function PricingTiers() {
       className="py-24 md:py-32"
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
+      <div ref={scrubRef} className="mb-14 flex max-w-[64rem] flex-col gap-6 md:mb-20">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <span className="inline-flex items-center gap-3">
+            <span
+              data-reveal="icon"
+              className="inline-block h-1.5 w-1.5 bg-accent"
+            />
+            Plans
+          </span>
+        </MaskedLine>
+
+        <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+          <ScrubText>Choose the plan that matches</ScrubText>{" "}
+          <span className="text-foreground/60">
+            <ScrubText>the stage of your business.</ScrubText>
+          </span>
+        </h2>
+      </div>
+
       <div
         ref={gridRef}
-        className="chamfer chamfer-md grid grid-cols-1 gap-px bg-muted/40 md:grid-cols-3"
+        className="chamfer chamfer-md grid grid-cols-1 gap-px bg-muted/40 md:grid-cols-2"
         style={{
           "--chamfer-border-color":
             "color-mix(in srgb, var(--muted) 40%, transparent)",
@@ -83,56 +129,79 @@ export default function PricingTiers() {
               transition={{ type: "spring", stiffness: 320, damping: 26 }}
               className={
                 (t.featured ? "bg-surface " : "bg-background ") +
-                "relative flex h-full flex-col gap-8 p-8 md:p-10"
+                "relative flex h-full flex-col gap-5 p-7 md:p-10"
               }
               style={{ backgroundImage: "var(--card-pinstripe)" }}
             >
-              {t.featured && (
-                <span
-                  data-reveal="icon"
-                  className="chamfer chamfer-xs absolute right-8 top-8 inline-flex items-center gap-2 px-2 py-1 text-[9px] uppercase tracking-[0.28em] text-accent"
-                  style={{ "--chamfer-border-color": "var(--accent)" }}
-                >
-                  <span className="relative z-10 h-1 w-1 bg-accent" />
-                  <span className="relative z-10">Most fit</span>
-                </span>
-              )}
-
               <div className="flex flex-col gap-3">
-                <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-foreground/50">
-                  {t.name}
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent">
+                    {t.name}
+                  </MaskedLine>
+                  {t.featured && (
+                    <span
+                      data-reveal="icon"
+                      className="chamfer chamfer-xs inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[10px] uppercase tracking-[0.22em] text-accent"
+                      style={{
+                        "--chamfer-border-color": "var(--accent)",
+                        "--chamfer-bg": "var(--surface)",
+                      }}
+                    >
+                      <span className="relative z-10 h-1 w-1 bg-accent" />
+                      <span className="relative z-10">Most complete</span>
+                    </span>
+                  )}
+                </div>
+                <MaskedLine
+                  as="h3"
+                  className="text-2xl font-semibold leading-[1.2] tracking-[-0.01em] text-foreground md:text-[1.75rem]"
+                >
+                  {t.tagline}
                 </MaskedLine>
-                <p className="max-w-xs text-sm leading-relaxed text-foreground/70">
+                <p className="text-lg font-medium leading-relaxed text-foreground/70">
                   <MaskedLine>{t.lede}</MaskedLine>
                 </p>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/40">
-                  {t.priceLabel}
+              <div className="flex flex-col gap-3 border-t border-muted/50 pt-5">
+                <MaskedLine className="text-xs uppercase tracking-[0.28em] text-foreground/40">
+                  Best for
                 </MaskedLine>
-                <MaskedLine
-                  innerClassName="font-display text-5xl font-medium tracking-[-0.02em] text-foreground"
-                  className="text-5xl leading-[1]"
-                >
-                  {t.price}
-                </MaskedLine>
+                <ul className="flex flex-col gap-2">
+                  {t.bestFor.map((b, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-lg font-medium text-foreground/80"
+                    >
+                      <span
+                        data-reveal="icon"
+                        className="mt-2 h-1 w-1 shrink-0 bg-accent"
+                      />
+                      <MaskedLine>{b}</MaskedLine>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <ul className="flex flex-col gap-3 border-t border-muted/50 pt-6">
-                {t.bullets.map((b, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-sm text-foreground/80"
-                  >
-                    <span
-                      data-reveal="icon"
-                      className="mt-2 h-1 w-1 shrink-0 bg-accent"
-                    />
-                    <MaskedLine>{b}</MaskedLine>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-col gap-3 border-t border-muted/50 pt-5">
+                <MaskedLine className="text-xs uppercase tracking-[0.28em] text-foreground/40">
+                  Includes
+                </MaskedLine>
+                <ul className="flex flex-col gap-2">
+                  {t.includes.map((b, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-lg font-medium text-foreground/80"
+                    >
+                      <CheckGlyph
+                        data-reveal="icon"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                      />
+                      <MaskedLine>{b}</MaskedLine>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <CTAButton
                 href="/contact"
@@ -146,5 +215,19 @@ export default function PricingTiers() {
         ))}
       </div>
     </SectionShell>
+  );
+}
+
+function CheckGlyph(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" {...props}>
+      <path
+        d="M3 8.5l3 3 7-8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

@@ -2,8 +2,6 @@
 
 import TopBar from "@/components/TopBar";
 import Nav from "@/components/Nav";
-import Cursor from "@/components/Cursor";
-import SpotlightCursor from "@/components/SpotlightCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import PageTransition from "@/components/PageTransition";
 import { LightLines } from "@/components/ui/LightLines";
@@ -35,8 +33,6 @@ export default function GlobalChrome({ children }) {
       </div>
       <TopBar />
       <Nav />
-      <SpotlightCursor />
-      <Cursor />
       <SmoothScroll>
         {/* PageTransition wraps only the route content, not the
             persistent Footer — the footer never dissolves; the "page"

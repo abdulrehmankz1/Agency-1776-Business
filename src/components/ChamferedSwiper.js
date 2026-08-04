@@ -142,11 +142,11 @@ export default function ChamferedSwiper({
     >
       {eyebrow && (
         <div className="mb-6 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-accent">
+          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-accent">
             <span className="inline-block h-1.5 w-1.5 bg-accent" />
             {eyebrow}
           </div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
             {String(index + 1).padStart(2, "0")} /{" "}
             {String(total).padStart(2, "0")}
           </div>
@@ -213,7 +213,7 @@ export default function ChamferedSwiper({
 
         {/* Chamfered range strip */}
         <div className="flex flex-1 items-center gap-4">
-          <span className="text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+          <span className="text-[11px] uppercase tracking-[0.28em] text-foreground/40">
             Progress
           </span>
           <div

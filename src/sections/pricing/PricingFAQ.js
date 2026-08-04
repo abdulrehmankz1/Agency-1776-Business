@@ -31,7 +31,7 @@ export default function PricingFAQ() {
       innerClassName="mx-auto max-w-[1200px] px-6 md:px-16"
     >
       <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -56,7 +56,7 @@ export default function PricingFAQ() {
               >
                 <MaskedLine
                   as="h3"
-                  className="max-w-2xl text-lg font-medium tracking-[-0.01em] text-foreground md:text-xl"
+                  className="max-w-2xl text-lg font-semibold tracking-[-0.01em] text-foreground md:text-xl"
                 >
                   {f.q}
                 </MaskedLine>
@@ -89,7 +89,7 @@ export default function PricingFAQ() {
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-2xl pb-6 pr-14 text-sm leading-relaxed text-foreground/70">
+                    <p className="max-w-2xl pb-6 pr-14 text-base font-medium leading-relaxed text-foreground/70">
                       {f.a}
                     </p>
                   </motion.div>

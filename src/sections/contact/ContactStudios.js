@@ -23,7 +23,7 @@ export default function ContactStudios() {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -52,14 +52,14 @@ export default function ContactStudios() {
           >
             <MaskedLine
               as="h3"
-              className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl"
+              className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl"
             >
               {s.city}
             </MaskedLine>
-            <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+            <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/40">
               {s.coords}
             </MaskedLine>
-            <MaskedLine className="mt-4 text-sm text-accent">
+            <MaskedLine className="mt-4 text-base font-medium text-accent">
               {s.hours}
             </MaskedLine>
           </div>

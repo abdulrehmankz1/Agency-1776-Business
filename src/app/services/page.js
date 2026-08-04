@@ -1,4 +1,5 @@
 import PageHero from "@/components/PageHero";
+import PageCTA from "@/components/PageCTA";
 import CTAButton from "@/components/CTAButton";
 import ServicesGrid from "@/sections/services/ServicesGrid";
 import ServicesProcess from "@/sections/services/ServicesProcess";
@@ -7,15 +8,14 @@ import ServicesFAQ from "@/sections/services/ServicesFAQ";
 export const metadata = {
   title: "Services · Agency 1776 Business",
   description:
-    "Website strategy, design, development, copy, lead generation, and SEO — a focused set of services built for business growth.",
+    "The complete system behind modern growth: website, landing pages, funnels, lead capture, CRM setup, follow-up automation, Meta Ads, Google Ads, copy, SEO, and campaign assets.",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Services"
-        index="004"
+        showMeta={false}
         backdrop="scan"
         heading={{
           lead: "Services for your",
@@ -23,17 +23,29 @@ export default function ServicesPage() {
           accent: "growth.",
         }}
         description={[
-          "Agency 1776 gives business owners the pieces they need to build a stronger website from the ground up.",
-          "A focused set of website services built to make your business clearer, more credible, and easier to contact.",
+          "Agency 1776 gives business owners the system behind modern growth:",
+          "website, landing pages, funnels, lead capture, CRM setup, marketing automation, Meta Ads, Google Ads, messaging, and campaign assets.",
         ]}
       >
         <CTAButton href="/contact" size="lg">
-          Start a project
+          Build my automation system
         </CTAButton>
       </PageHero>
       <ServicesGrid />
       <ServicesProcess />
       <ServicesFAQ />
+      <PageCTA
+        eyebrow="Get started"
+        heading="Build the system behind"
+        accent="your next customer."
+      >
+        <CTAButton href="/contact" variant="solid" size="lg">
+          Build my automation system
+        </CTAButton>
+        <CTAButton href="/contact" size="lg">
+          Contact us
+        </CTAButton>
+      </PageCTA>
     </>
   );
 }

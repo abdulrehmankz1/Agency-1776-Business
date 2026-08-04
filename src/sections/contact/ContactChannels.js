@@ -24,7 +24,7 @@ export default function ContactChannels() {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -54,18 +54,18 @@ export default function ContactChannels() {
             className="group flex flex-col gap-3 bg-background p-8 md:p-10"
             style={{ backgroundImage: "var(--card-pinstripe)" }}
           >
-            <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+            <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/50">
               {c.label}
             </MaskedLine>
             <MaskedLine
               as="span"
-              className="font-display text-2xl font-medium tracking-[-0.02em] text-foreground group-hover:text-accent md:text-3xl"
+              className="font-display text-2xl font-semibold tracking-[-0.02em] text-foreground group-hover:text-accent md:text-3xl"
             >
               {c.value}
             </MaskedLine>
             <span
               data-reveal="icon"
-              className="text-[10px] uppercase tracking-[0.28em] text-foreground/40"
+              className="text-[11px] uppercase tracking-[0.28em] text-foreground/40"
             >
               {c.meta}
             </span>

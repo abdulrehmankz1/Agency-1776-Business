@@ -38,7 +38,7 @@ export default function About() {
     >
       <div className="grid gap-16 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-24">
         <div ref={scrubRef} className="flex flex-col gap-10">
-          <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -48,7 +48,7 @@ export default function About() {
             </span>
           </MaskedLine>
 
-          <h2 className="text-[clamp(2.25rem,5.5vw,4rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText mode="word">
               A small studio built around one belief: that thoughtful software
               is still a competitive advantage.
@@ -59,11 +59,11 @@ export default function About() {
             {PRINCIPLES.map((p, i) => (
               <li
                 key={i}
-                className="flex items-start gap-6 py-6 text-sm text-foreground/80"
+                className="flex items-start gap-6 py-6 text-base font-medium text-foreground/80"
               >
                 <span
                   data-reveal="icon"
-                  className="mt-1 shrink-0 text-[10px] uppercase tracking-[0.28em] text-foreground/40"
+                  className="mt-1 shrink-0 text-[11px] uppercase tracking-[0.28em] text-foreground/40"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -95,18 +95,18 @@ export default function About() {
               >
                 <span
                   data-reveal="icon"
-                  className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl"
+                  className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl"
                 >
                   {s.value}
                 </span>
-                <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+                <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/50">
                   {s.label}
                 </MaskedLine>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-foreground/50">
+          <div className="mt-8 flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-foreground/50">
             <span
               data-reveal="icon"
               className="inline-block h-1.5 w-1.5 bg-accent"

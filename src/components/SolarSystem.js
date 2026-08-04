@@ -353,7 +353,7 @@ export default function SolarSystem({ className }) {
                   onMouseEnter={() => setHovered(item.id)}
                   onMouseLeave={() => setHovered(null)}
                   className={cn(
-                    "solar-billboard chamfer chamfer-xs absolute left-1/2 top-1/2 flex items-center gap-2 whitespace-nowrap px-3 py-1.5 text-[10px] uppercase tracking-[0.28em] transition-[scale,color,border-color] duration-300",
+                    "solar-billboard chamfer chamfer-xs absolute left-1/2 top-1/2 flex items-center gap-2 whitespace-nowrap px-3 py-1.5 text-[11px] uppercase tracking-[0.28em] transition-[scale,color,border-color] duration-300",
                     "cursor-default"
                   )}
                   style={{

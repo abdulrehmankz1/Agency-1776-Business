@@ -13,7 +13,7 @@ import { SNAP } from "@/animations/config";
 import ProjectMock, { MOCK_VARIANT_KEYS } from "@/components/ProjectMock";
 
 /**
- * Selected work / 003 — 3D Fibonacci-sphere gallery.
+ * Featured projects / 006 — 3D Fibonacci-sphere gallery.
  *
  * Architecture (adapted from the react-thanos-snap-adjacent CodeSandbox
  * reference, but rewritten for the studio's GSAP + ScrollSmoother stack):
@@ -334,17 +334,17 @@ export default function Portfolio() {
               ref={scrubRef}
               className="mx-auto flex w-full max-w-md flex-col gap-6 lg:mx-0"
             >
-              <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+              <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
                 <span className="inline-flex items-center gap-3">
                   <span
                     data-reveal="icon"
                     className="inline-block h-1.5 w-1.5 bg-accent"
                   />
-                  Selected work / <span ref={eyebrowNumRef}>003</span>
+                  Featured projects
                 </span>
               </MaskedLine>
 
-              <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+              <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.28em] text-foreground/50">
                 <span
                   ref={clientRef}
                   data-scrub="word"
@@ -361,7 +361,7 @@ export default function Portfolio() {
               <h3
                 ref={titleRef}
                 data-scrub="word"
-                className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground"
+                className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground"
               >
                 {first.title}
               </h3>
@@ -369,12 +369,12 @@ export default function Portfolio() {
               <p
                 ref={roleRef}
                 data-scrub="word"
-                className="text-sm leading-relaxed text-foreground/60"
+                className="text-base font-medium leading-relaxed text-foreground/60"
               >
                 {first.role}
               </p>
 
-              <div className="mt-2 flex items-center gap-3 text-[10px] uppercase tracking-[0.24em] text-foreground/50">
+              <div className="mt-2 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-foreground/50">
                 <span className="inline-block h-1 w-1 bg-accent" />
                 <span ref={tagRef} data-scrub="word">
                   {first.tag}
@@ -390,7 +390,7 @@ export default function Portfolio() {
                     transition={{ type: "spring", stiffness: 400, damping: 26 }}
                     data-cursor="link"
                     data-scrub="word"
-                    className="mt-4 inline-flex items-center gap-3 self-start text-xs uppercase tracking-[0.24em] text-accent"
+                    className="mt-4 inline-flex items-center gap-3 self-start text-sm uppercase tracking-[0.24em] text-accent"
                   >
                     View all cases
                     <span className="inline-block h-px w-8 bg-accent" />
@@ -588,19 +588,19 @@ function ProjectCarousel({ projects, count, onOpen }) {
     <div className="flex flex-col gap-10 py-16 sm:py-20">
       {/* Eyebrow — matches the desktop side-panel language. */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            Selected work / {String(active + 1).padStart(2, "0")}
+            Featured projects / {String(active + 1).padStart(2, "0")}
             <span className="text-foreground/40">
               {" "}/ {String(count).padStart(2, "0")}
             </span>
           </span>
         </MaskedLine>
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-foreground/50">
           <span className="hidden sm:inline">{active_project.client}</span>
           <span className="hidden h-px w-6 bg-muted sm:inline-block" />
           <span>{active_project.year}</span>
@@ -614,7 +614,7 @@ function ProjectCarousel({ projects, count, onOpen }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[clamp(1.75rem,5vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground"
+          className="text-[clamp(1.75rem,5vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground"
         >
           {active_project.title}
         </motion.h3>
@@ -623,7 +623,7 @@ function ProjectCarousel({ projects, count, onOpen }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-          className="text-sm leading-relaxed text-foreground/60"
+          className="text-base font-medium leading-relaxed text-foreground/60"
         >
           {active_project.role}
         </motion.p>
@@ -709,7 +709,7 @@ function ProjectCarousel({ projects, count, onOpen }) {
         </div>
 
         {/* Compact tag pill echoing the sphere card face. */}
-        <div className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+        <div className="text-[11px] uppercase tracking-[0.28em] text-foreground/50">
           <span className="inline-flex items-center gap-2">
             <span className="inline-block h-1.5 w-1.5 bg-accent" />
             {active_project.tag}

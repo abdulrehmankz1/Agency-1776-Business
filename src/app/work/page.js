@@ -1,7 +1,7 @@
 import PageHero from "@/components/PageHero";
+import PageCTA from "@/components/PageCTA";
 import CTAButton from "@/components/CTAButton";
 import WorkGrid from "@/sections/work/WorkGrid";
-import WorkClients from "@/sections/work/WorkClients";
 
 export const metadata = {
   title: "Selected work · Agency 1776 Business",
@@ -13,25 +13,31 @@ export default function WorkPage() {
   return (
     <>
       <PageHero
-        eyebrow="Selected work"
-        index="003"
+        showMeta={false}
         backdrop="sweep"
         heading={{
-          lead: "Three engagements",
-          tail: "we can walk through.",
-          accent: "The rest is under NDA.",
+          lead: "Built with a job",
+          accent: "to do.",
         }}
         description={[
-          "Every case study lists the metric we were hired to move,",
-          "the number we posted, and the stack that shipped.",
+          "Our work showcases websites, landing pages, lead capture systems, automation flows, and campaign assets",
+          "built for businesses that needed more than a basic online presence.",
         ]}
       >
-        <CTAButton href="/contact" size="lg">
-          Discuss a project
+        <CTAButton href="#work-list" size="lg">
+          View our projects
         </CTAButton>
       </PageHero>
       <WorkGrid />
-      <WorkClients />
+      <PageCTA
+        eyebrow="Case studies"
+        heading="Your project could be the next"
+        accent="case study."
+      >
+        <CTAButton href="/contact" size="lg">
+          Contact us about your project
+        </CTAButton>
+      </PageCTA>
     </>
   );
 }

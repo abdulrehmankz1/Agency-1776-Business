@@ -180,8 +180,8 @@ const CTAButton = forwardRef(function CTAButton(
   const Tag = isButton ? "button" : "a";
 
   const sizes = {
-    md: "px-5 py-3 text-[11px] tracking-[0.24em]",
-    lg: "px-7 py-4 text-xs tracking-[0.26em]",
+    md: "px-5 py-3 text-xs tracking-[0.24em]",
+    lg: "px-7 py-4 text-sm tracking-[0.26em]",
   };
 
   // Solid: pre-filled accent, dark tokens for text/dot/line.

@@ -34,6 +34,7 @@ export default function PageHero({
   heading,        // { lead: "…", tail: "…", accent: "" } — accent word gets StencilFill
   description,    // string OR array of strings (each line masked)
   children,       // optional CTAs / meta below the description
+  showMeta = true, // top row: eyebrow chip + "Agency 1776 — Studio" tag
   backdrop = "beams", // PageHeroBackdrop variant ("beams" | "scan" | "pulse" | "sweep" | "directional")
 }) {
   const revealRef = useSectionReveal({ start: "top bottom" });
@@ -49,26 +50,28 @@ export default function PageHero({
       innerClassName="mx-auto flex max-w-[1600px] flex-col gap-14 px-6 md:px-16"
       backdrop={backdrop ? <PageHeroBackdrop variant={backdrop} /> : null}
     >
-      <div className="flex items-center justify-between gap-8">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
-          <span className="inline-flex items-center gap-3">
-            <span
-              data-reveal="icon"
-              className="inline-block h-1.5 w-1.5 bg-accent"
-            />
-            {eyebrow}
-            {index && (
-              <>
-                {" "}
-                / <span>{index}</span>
-              </>
-            )}
-          </span>
-        </MaskedLine>
-        <MaskedLine className="hidden text-[10px] uppercase tracking-[0.32em] text-foreground/45 md:block">
-          Agency 1776 — Studio
-        </MaskedLine>
-      </div>
+      {showMeta && (
+        <div className="flex items-center justify-between gap-8">
+          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+            <span className="inline-flex items-center gap-3">
+              <span
+                data-reveal="icon"
+                className="inline-block h-1.5 w-1.5 bg-accent"
+              />
+              {eyebrow}
+              {index && (
+                <>
+                  {" "}
+                  / <span>{index}</span>
+                </>
+              )}
+            </span>
+          </MaskedLine>
+          <MaskedLine className="hidden text-[11px] uppercase tracking-[0.32em] text-foreground/45 md:block">
+            Agency 1776 — Studio
+          </MaskedLine>
+        </div>
+      )}
 
       <div ref={scrubRef} className="max-w-[70rem]">
         <h1 className="font-display text-[clamp(2.5rem,7.5vw,6.5rem)] leading-[0.94] tracking-[-0.01em] text-foreground [word-break:normal]">
@@ -93,7 +96,7 @@ export default function PageHero({
       </div>
 
       <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-        <p className="max-w-md text-sm leading-relaxed text-foreground/70">
+        <p className="max-w-md text-base font-medium leading-relaxed text-foreground/70">
           {descLines.map((line, i) => (
             <MaskedLine key={i} block>
               {line}

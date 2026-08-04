@@ -4,33 +4,50 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import SectionShell from "@/components/SectionShell";
 import { MaskedLine } from "@/components/MaskedLine";
+import { ScrubText } from "@/components/ScrubText";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
+import { useScrubReveal } from "@/hooks/useScrubReveal";
 
-const FAQ = [
+/**
+ * ServicesFAQ — "Service paths". The engagement shapes businesses choose:
+ * build the whole system, or fix the single part holding them back. Each
+ * path is a title + a "for businesses that…" fit statement, in the same
+ * accordion the page has always used.
+ */
+const PATHS = [
   {
-    q: "What is a Full Website Build?",
-    a: "The complete system. We map your strategy, write the copy, design the pages, develop across desktop, tablet, and mobile, and launch with your CTAs, forms, and SEO foundation in place. Right for businesses starting fresh or replacing a site that no longer represents them.",
+    q: "Full Automation Build",
+    a: "For businesses that need a complete system from website to funnels, lead capture, CRM, paid ads, and follow-up automation.",
   },
   {
-    q: "What is a Website Redesign?",
-    a: "For businesses whose current site looks dated, converts poorly, or no longer reflects the business. We rebuild the visual layer, sharpen the message, and update the structure — without starting from zero.",
+    q: "Website + Lead Capture Build",
+    a: "For businesses that need a professional website with forms, CTAs, quote requests, booking paths, and basic CRM structure.",
   },
   {
-    q: "What is a Landing Page Build?",
-    a: "A single focused page designed for quote requests, bookings, inquiries, campaigns, or sales conversations. Built to convert one visitor at a time, wherever your traffic is coming from.",
+    q: "Landing Page + Funnel Build",
+    a: "For businesses running ads, promotions, seasonal offers, lead magnets, or service-specific campaigns.",
   },
   {
-    q: "What is a Copy and Messaging Upgrade?",
-    a: "Sometimes the design is fine but the words are not selling. We rewrite the copy across your key pages so your value is clear and your visitor knows exactly what to do next.",
+    q: "Meta Ads / Google Ads Support",
+    a: "For businesses that need ad campaigns connected to strong landing pages, clear offers, lead capture, and follow-up systems.",
   },
   {
-    q: "What is an SEO Foundation Setup?",
-    a: "Structural search-visibility work — headings, metadata, page flow, and content hierarchy — so search engines can read and rank your business fairly. The foundation that ongoing SEO work builds on.",
+    q: "Follow-Up Automation Setup",
+    a: "For businesses that already get leads but need faster response, better nurturing, and cleaner lead handling.",
+  },
+  {
+    q: "CRM / Lead Flow Setup",
+    a: "For businesses that need a better way to organize, track, and manage incoming opportunities.",
+  },
+  {
+    q: "Messaging and Conversion Upgrade",
+    a: "For businesses whose website looks decent but fails to explain the offer, build trust, or move people to act.",
   },
 ];
 
 export default function ServicesFAQ() {
   const revealRef = useSectionReveal();
+  const scrubRef = useScrubReveal();
   const [open, setOpen] = useState(0);
 
   return (
@@ -40,23 +57,26 @@ export default function ServicesFAQ() {
       className="py-24 md:py-32"
       innerClassName="mx-auto max-w-[1200px] px-6 md:px-16"
     >
-      <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+      <div ref={scrubRef} className="mb-14 flex flex-col gap-6 md:mb-20">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            Service paths / 04
+            Service paths
           </span>
         </MaskedLine>
-        <MaskedLine className="max-w-md text-sm leading-relaxed text-foreground/60">
-          Fix one piece, or rebuild the whole system — the paths businesses choose most.
-        </MaskedLine>
+        <h2 className="max-w-4xl text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+          <ScrubText>Build the whole system</ScrubText>{" "}
+          <span className="text-foreground/60">
+            <ScrubText>or fix the part that is holding you back.</ScrubText>
+          </span>
+        </h2>
       </div>
 
       <ul className="flex flex-col divide-y divide-muted/40 border-y border-muted/40">
-        {FAQ.map((f, i) => {
+        {PATHS.map((f, i) => {
           const isOpen = open === i;
           return (
             <li key={i} className="py-2">
@@ -69,7 +89,7 @@ export default function ServicesFAQ() {
               >
                 <MaskedLine
                   as="h3"
-                  className="max-w-2xl text-lg font-medium tracking-[-0.01em] text-foreground md:text-xl"
+                  className="max-w-2xl text-lg font-semibold tracking-[-0.01em] text-foreground md:text-xl"
                 >
                   {f.q}
                 </MaskedLine>
@@ -102,7 +122,7 @@ export default function ServicesFAQ() {
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-2xl pb-6 pr-14 text-sm leading-relaxed text-foreground/70">
+                    <p className="max-w-2xl pb-6 pr-14 text-base font-medium leading-relaxed text-foreground/70">
                       {f.a}
                     </p>
                   </motion.div>

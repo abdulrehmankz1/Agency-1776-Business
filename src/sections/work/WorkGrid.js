@@ -197,19 +197,25 @@ export default function WorkGrid() {
 
       {/* Eyebrow + intro copy — preserves the design language used by
           every other section header on the site. */}
-      <div className="relative mx-auto mb-14 flex max-w-[1600px] flex-wrap items-end justify-between gap-6 px-6 md:mb-16 md:px-16">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+      <div className="relative mx-auto mb-14 flex max-w-[1600px] flex-col gap-6 px-6 md:mb-16 md:px-16">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            The book / 02
+            Featured projects
           </span>
         </MaskedLine>
-        <MaskedLine className="max-w-md text-sm leading-relaxed text-foreground/60">
-          Selected engagements + confidential builds — click a real
-          case for the numbers.
+        <MaskedLine
+          as="h2"
+          className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground"
+        >
+          Selected business website builds.
+        </MaskedLine>
+        <MaskedLine className="max-w-xl text-base font-medium leading-relaxed text-foreground/60">
+          Websites, landing pages, lead capture, and automation systems built
+          for businesses that needed more than a basic online presence.
         </MaskedLine>
       </div>
 
@@ -287,7 +293,7 @@ export default function WorkGrid() {
 
       {/* Footer strip — count + CTA, preserves eyebrow language */}
       <div className="relative mx-auto mt-14 flex max-w-[1600px] flex-wrap items-center justify-between gap-6 px-6 md:mt-16 md:px-16">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-foreground/50">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/50">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -398,7 +404,7 @@ function MarqueeTile({ tile, size, isDuplicate = false }) {
       {/* Title beneath the frame — reads on hover for the "premium
           reveal" the brief asks for, without cluttering the tile face. */}
       <div className="mt-4 px-1">
-        <p className="text-sm leading-snug tracking-[-0.005em] text-foreground/80">
+        <p className="text-base font-medium leading-snug tracking-[-0.005em] text-foreground/80">
           {tile.title}
         </p>
       </div>
@@ -438,7 +444,7 @@ function ViewAllLink() {
       whileHover={{ x: 4 }}
       transition={{ type: "spring", stiffness: 400, damping: 26 }}
       data-cursor="link"
-      className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-accent"
+      className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-accent"
     >
       Discuss a project
       <span className="inline-block h-px w-8 bg-accent" />

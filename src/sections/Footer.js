@@ -18,7 +18,7 @@ import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const PRIMARY_LINKS = [
   { label: "Services", href: "/services" },
-  { label: "Work", href: "/work" },
+  { label: "Portfolio", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
@@ -26,7 +26,11 @@ const PRIMARY_LINKS = [
 
 const CONTACT_LINKS = [
   { label: "hello@1776.studio", href: "mailto:hello@1776.studio" },
-  { label: "Book an intro", href: "/contact" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ];
 
 const MotionLink = motion.create(Link);
@@ -56,7 +60,7 @@ export default function Footer() {
               aria-hidden
               className="inline-block h-1.5 w-1.5 bg-accent"
             />
-            <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+            <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
               Agency 1776
             </MaskedLine>
           </div>
@@ -75,7 +79,7 @@ export default function Footer() {
               data-reveal="text-line"
               whileHover={{ x: 4 }}
               transition={{ type: "spring", stiffness: 480, damping: 30 }}
-              className="inline-flex items-center gap-3 text-sm tracking-[-0.005em] text-foreground/70 will-change-transform [transform:translate3d(0,0,0)] hover:text-foreground"
+              className="inline-flex items-center gap-3 text-base font-medium tracking-[-0.005em] text-foreground/70 will-change-transform [transform:translate3d(0,0,0)] hover:text-foreground"
             >
               hello@1776.studio
               <span aria-hidden className="inline-block h-px w-6 bg-current" />
@@ -86,7 +90,7 @@ export default function Footer() {
         {/* Right column: navigation + contact */}
         <div className="grid grid-cols-2 gap-10">
           <nav aria-label="Sitemap" className="flex flex-col gap-4">
-            <MaskedLine className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+            <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
               Navigate
             </MaskedLine>
             <ul className="flex flex-col gap-3">
@@ -97,7 +101,7 @@ export default function Footer() {
                     data-cursor="link"
                     whileHover={{ x: 4 }}
                     transition={{ type: "spring", stiffness: 480, damping: 30 }}
-                    className="inline-block text-[13px] tracking-[-0.005em] text-foreground/75 hover:text-foreground"
+                    className="inline-block text-sm tracking-[-0.005em] text-foreground/75 hover:text-foreground"
                     data-reveal="text-line"
                   >
                     {link.label}
@@ -108,7 +112,7 @@ export default function Footer() {
           </nav>
 
           <div className="flex flex-col gap-4">
-            <MaskedLine className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+            <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
               Direct
             </MaskedLine>
             <ul className="flex flex-col gap-3">
@@ -122,7 +126,7 @@ export default function Footer() {
                       data-cursor="link"
                       whileHover={{ x: 4 }}
                       transition={{ type: "spring", stiffness: 480, damping: 30 }}
-                      className="inline-block text-[13px] tracking-[-0.005em] text-foreground/75 hover:text-foreground"
+                      className="inline-block text-sm tracking-[-0.005em] text-foreground/75 hover:text-foreground"
                       data-reveal="text-line"
                     >
                       {link.label}
@@ -135,13 +139,31 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Meta strip — separator + copyright + credits */}
+      {/* Meta strip — separator + copyright + legal + credits */}
       <div className="mt-16 flex flex-col-reverse items-start justify-between gap-4 border-t border-muted/25 pt-6 md:mt-20 md:flex-row md:items-center">
-        <MaskedLine className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/40">
-          &copy; 2026 Agency 1776 &middot; New York
-        </MaskedLine>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
+            &copy; 2026 Agency 1776 &middot; New York
+          </MaskedLine>
+          <span className="flex items-center gap-4">
+            {LEGAL_LINKS.map((link) => (
+              <span key={link.href} className="overflow-hidden">
+                <MotionLink
+                  href={link.href}
+                  data-cursor="link"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 480, damping: 30 }}
+                  className="inline-block font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40 hover:text-foreground"
+                  data-reveal="text-line"
+                >
+                  {link.label}
+                </MotionLink>
+              </span>
+            ))}
+          </span>
+        </div>
         <div className="flex items-center gap-6">
-          <MaskedLine className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+          <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
             Booking Q4
           </MaskedLine>
           <span className="flex items-center gap-2">
@@ -150,7 +172,7 @@ export default function Footer() {
               aria-hidden
               className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
             />
-            <MaskedLine className="font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/40">
+            <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
               Live
             </MaskedLine>
           </span>

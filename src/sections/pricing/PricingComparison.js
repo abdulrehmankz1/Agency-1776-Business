@@ -29,7 +29,7 @@ export default function PricingComparison() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div className="mb-12 flex flex-col gap-6" ref={scrubRef}>
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -38,7 +38,7 @@ export default function PricingComparison() {
             Compare / 03
           </span>
         </MaskedLine>
-        <h2 className="max-w-3xl text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
+        <h2 className="max-w-3xl text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
           <ScrubText>Same team.</ScrubText>{" "}
           <StencilFill className="text-accent">Different tempo.</StencilFill>
         </h2>
@@ -53,7 +53,7 @@ export default function PricingComparison() {
           "--chamfer-bg": "var(--surface)",
         }}
       >
-        <div className="grid grid-cols-4 border-b border-muted/40 bg-background/40 text-[10px] uppercase tracking-[0.32em]">
+        <div className="grid grid-cols-4 border-b border-muted/40 bg-background/40 text-[11px] uppercase tracking-[0.32em]">
           <div className="p-6 text-foreground/40">Metric</div>
           <div className="p-6 text-foreground/70">Sprint</div>
           <div className="p-6 text-accent">Retainer</div>
@@ -62,16 +62,16 @@ export default function PricingComparison() {
         <ul className="flex flex-col divide-y divide-muted/30">
           {ROWS.map((r) => (
             <li key={r.label} className="grid grid-cols-4 items-center">
-              <div className="p-6 text-[11px] uppercase tracking-[0.24em] text-foreground/60">
+              <div className="p-6 text-xs uppercase tracking-[0.24em] text-foreground/60">
                 <MaskedLine>{r.label}</MaskedLine>
               </div>
-              <div className="p-6 text-sm text-foreground/85">
+              <div className="p-6 text-base font-medium text-foreground/85">
                 <MaskedLine>{r.sprint}</MaskedLine>
               </div>
-              <div className="p-6 text-sm text-accent">
+              <div className="p-6 text-base font-medium text-accent">
                 <MaskedLine>{r.retainer}</MaskedLine>
               </div>
-              <div className="p-6 text-sm text-foreground/85">
+              <div className="p-6 text-base font-medium text-foreground/85">
                 <MaskedLine>{r.systems}</MaskedLine>
               </div>
             </li>

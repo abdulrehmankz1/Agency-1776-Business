@@ -25,7 +25,7 @@ export default function AboutTimeline() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[10px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -34,7 +34,7 @@ export default function AboutTimeline() {
             Trajectory / 04
           </span>
         </MaskedLine>
-        <MaskedLine className="max-w-md text-sm leading-relaxed text-foreground/60">
+        <MaskedLine className="max-w-md text-base font-medium leading-relaxed text-foreground/60">
           Two years in. The pace is deliberate.
         </MaskedLine>
       </div>
@@ -56,16 +56,16 @@ export default function AboutTimeline() {
               <div className={i % 2 === 0 ? "hidden md:block" : "hidden md:block md:pr-8 md:text-right"}>
                 {i % 2 === 1 && (
                   <>
-                    <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-accent">
+                    <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
                       {m.year}
                     </MaskedLine>
                     <MaskedLine
                       as="h3"
-                      className="mt-2 text-lg font-medium tracking-[-0.01em] text-foreground"
+                      className="mt-2 text-lg font-semibold tracking-[-0.01em] text-foreground"
                     >
                       {m.title}
                     </MaskedLine>
-                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/60 md:ml-auto">
+                    <p className="mt-2 max-w-sm text-base font-medium leading-relaxed text-foreground/60 md:ml-auto">
                       <MaskedLine>{m.body}</MaskedLine>
                     </p>
                   </>
@@ -77,16 +77,16 @@ export default function AboutTimeline() {
                 className="mt-2 h-3 w-3 -translate-x-[5px] rounded-full bg-accent md:mx-auto md:-translate-x-[0px]"
               />
               <div className={i % 2 === 0 ? "md:pl-8" : "md:pl-8 md:hidden"}>
-                <MaskedLine className="text-[10px] uppercase tracking-[0.28em] text-accent">
+                <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
                   {m.year}
                 </MaskedLine>
                 <MaskedLine
                   as="h3"
-                  className="mt-2 text-lg font-medium tracking-[-0.01em] text-foreground"
+                  className="mt-2 text-lg font-semibold tracking-[-0.01em] text-foreground"
                 >
                   {m.title}
                 </MaskedLine>
-                <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/60">
+                <p className="mt-2 max-w-sm text-base font-medium leading-relaxed text-foreground/60">
                   <MaskedLine>{m.body}</MaskedLine>
                 </p>
               </div>
