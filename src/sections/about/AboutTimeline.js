@@ -25,7 +25,7 @@ export default function AboutTimeline() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -56,7 +56,7 @@ export default function AboutTimeline() {
               <div className={i % 2 === 0 ? "hidden md:block" : "hidden md:block md:pr-8 md:text-right"}>
                 {i % 2 === 1 && (
                   <>
-                    <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
+                    <MaskedLine className="text-xs uppercase tracking-[0.28em] text-accent font-bold">
                       {m.year}
                     </MaskedLine>
                     <MaskedLine
@@ -77,7 +77,7 @@ export default function AboutTimeline() {
                 className="mt-2 h-3 w-3 -translate-x-[5px] rounded-full bg-accent md:mx-auto md:-translate-x-[0px]"
               />
               <div className={i % 2 === 0 ? "md:pl-8" : "md:pl-8 md:hidden"}>
-                <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
+                <MaskedLine className="text-xs uppercase tracking-[0.28em] text-accent font-bold">
                   {m.year}
                 </MaskedLine>
                 <MaskedLine

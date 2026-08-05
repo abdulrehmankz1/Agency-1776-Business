@@ -334,7 +334,7 @@ export default function Portfolio() {
               ref={scrubRef}
               className="mx-auto flex w-full max-w-md flex-col gap-6 lg:mx-0"
             >
-              <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+              <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
                 <span className="inline-flex items-center gap-3">
                   <span
                     data-reveal="icon"
@@ -588,7 +588,7 @@ function ProjectCarousel({ projects, count, onOpen }) {
     <div className="flex flex-col gap-10 py-16 sm:py-20">
       {/* Eyebrow — matches the desktop side-panel language. */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"

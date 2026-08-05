@@ -77,7 +77,7 @@ export default function ValueGrid() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="flex max-w-[68rem] flex-col items-start gap-8">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -151,7 +151,7 @@ function ValueCard({ n, title, body, Icon, col }) {
       <div className="flex flex-col gap-4">
         <MaskedLine
           as="h3"
-          className="text-sm font-semibold uppercase leading-[1.35] tracking-[0.18em] text-foreground"
+          className="text-lg font-semibold uppercase leading-[1.35] tracking-[0.18em] text-foreground"
         >
           {title}
         </MaskedLine>

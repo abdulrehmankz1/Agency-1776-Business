@@ -45,6 +45,7 @@ const CTAButton = forwardRef(function CTAButton(
     if (!el) return;
     registerGsap();
 
+    const glow  = el.querySelector("[data-cta-glow]");
     const shell = el.querySelector("[data-cta-shell]");
     const fill  = el.querySelector("[data-cta-fill]");
     const label = el.querySelector("[data-cta-label]");
@@ -59,13 +60,18 @@ const CTAButton = forwardRef(function CTAButton(
     gsap.set(line,  { scaleX: 1, transformOrigin: "left center" });
     gsap.set(label, { y: 0 });
     // Prime the filter/boxShadow tracks so GSAP has a matching structure
-    // to interpolate to on hover. drop-shadow lives on the outer Tag
-    // (unclipped) so the glow follows the chamfered silhouette of the
-    // shell without being clipped away; the inset accent line rides on
-    // the shell (clipped) so it hugs the chamfered edge cleanly.
-    gsap.set(el, {
-      filter: "drop-shadow(0 0 0 rgba(191,10,48,0))",
-    });
+    // to interpolate to on hover. drop-shadow rides on [data-cta-glow] —
+    // an unclipped wrapper around the shell — so the glow traces the
+    // chamfered silhouette without being clipped away AND without the
+    // label sitting inside an animating filter (that forces Chrome to
+    // re-rasterize the glyphs into the filter surface, which reads as a
+    // font-weight shift on hover). The inset accent line rides on the
+    // shell (clipped) so it hugs the chamfered edge cleanly.
+    if (glow) {
+      gsap.set(glow, {
+        filter: "drop-shadow(0 0 0 rgba(191,10,48,0))",
+      });
+    }
     if (shell) {
       gsap.set(shell, {
         boxShadow: "0 0 0 1px rgba(191,10,48,0) inset",
@@ -75,7 +81,7 @@ const CTAButton = forwardRef(function CTAButton(
     const ctx = gsap.context(() => {
       const enter = () => {
         if (disabled) return;
-        gsap.killTweensOf([el, shell, fill, label, dot, line]);
+        gsap.killTweensOf([el, glow, shell, fill, label, dot, line]);
         // Sweep — invisible on solid variant (fill matches bg), still animates so the
         // resting/leave cycle stays consistent.
         gsap.to(fill, {
@@ -85,10 +91,16 @@ const CTAButton = forwardRef(function CTAButton(
         });
         gsap.to(el, {
           y: -2,
-          filter: "drop-shadow(0 12px 30px rgba(191,10,48,0.35))",
           duration: 0.45,
           ease: "power3.out",
         });
+        if (glow) {
+          gsap.to(glow, {
+            filter: "drop-shadow(0 12px 30px rgba(191,10,48,0.35))",
+            duration: 0.45,
+            ease: "power3.out",
+          });
+        }
         if (shell) {
           gsap.to(shell, {
             boxShadow: "0 0 0 1px rgba(191,10,48,0.4) inset",
@@ -117,7 +129,7 @@ const CTAButton = forwardRef(function CTAButton(
       };
 
       const leave = () => {
-        gsap.killTweensOf([el, shell, fill, label, dot, line]);
+        gsap.killTweensOf([el, glow, shell, fill, label, dot, line]);
         gsap.to(fill, {
           clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
           duration: 0.4,
@@ -130,10 +142,16 @@ const CTAButton = forwardRef(function CTAButton(
         });
         gsap.to(el, {
           y: 0,
-          filter: "drop-shadow(0 0 0 rgba(191,10,48,0))",
           duration: 0.4,
           ease: "power3.out",
         });
+        if (glow) {
+          gsap.to(glow, {
+            filter: "drop-shadow(0 0 0 rgba(191,10,48,0))",
+            duration: 0.4,
+            ease: "power3.out",
+          });
+        }
         if (shell) {
           gsap.to(shell, {
             boxShadow: "0 0 0 1px rgba(191,10,48,0) inset",
@@ -193,16 +211,18 @@ const CTAButton = forwardRef(function CTAButton(
   // Layer structure — needed so the previous hover choreography still
   // renders correctly on a chamfered button:
   //
-  //   <Tag>                     ← hover listeners + drop-shadow filter (UNCLIPPED,
-  //     [data-cta-shell]           so the red glow can extend past the outline)
-  //       .chamfer                ← clipped chamfered shell; provides border,
-  //         [data-cta-fill]         interior fill, and hosts the inset boxShadow
+  //   <Tag>                     ← hover listeners + lift/scale transforms
+  //     [data-cta-glow]         ← UNCLIPPED; carries the drop-shadow filter
+  //       [data-cta-shell]        so the red glow extends past the outline
+  //         .chamfer            ← clipped chamfered shell; provides border,
+  //           [data-cta-fill]     interior fill, and hosts the inset boxShadow
   //     content (dot/label/line)
   //
-  // Because the shell (not the Tag) carries the clip-path, the outer
-  // `filter: drop-shadow(...)` on Tag traces the shell's chamfered
-  // silhouette instead of being clipped away — restoring the previous
-  // hover glow verbatim.
+  // Because the shell (not the glow layer) carries the clip-path, the
+  // `filter: drop-shadow(...)` on [data-cta-glow] traces the shell's
+  // chamfered silhouette instead of being clipped away. Keeping that
+  // filter off <Tag> matters: text inside an animating filter gets
+  // re-rasterized by the compositor and visibly changes weight on hover.
   const isSolid = variant === "solid";
   // Primary interior uses --background so the shell renders as a
   // hairline accent border over a dark fill — matching the previous
@@ -236,14 +256,24 @@ const CTAButton = forwardRef(function CTAButton(
       )}
       {...rest}
     >
-      {/* Chamfered shell — accent chamfered border + dark interior via
-          .chamfer's ::before. Sits behind everything else at z:-10. */}
+      {/* Glow layer — carries the animated drop-shadow. It wraps (but is
+          not itself clipped by) the chamfered shell, so the shadow traces
+          the chamfered silhouette while keeping the label out of the
+          filter's render surface. */}
       <span
         aria-hidden
-        data-cta-shell
-        className="chamfer chamfer-sm pointer-events-none absolute inset-0 -z-10"
-        style={shellStyle}
-      />
+        data-cta-glow
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        {/* Chamfered shell — accent chamfered border + dark interior via
+            .chamfer's ::before. Sits behind everything else at z:-10. */}
+        <span
+          aria-hidden
+          data-cta-shell
+          className="chamfer chamfer-sm pointer-events-none absolute inset-0"
+          style={shellStyle}
+        />
+      </span>
 
       {/* Fill sweep, in its OWN chamfered mask so the shell's clip and
           the fill's animated clip don't fight over the same layer. The
@@ -271,7 +301,7 @@ const CTAButton = forwardRef(function CTAButton(
         />
         <span
           data-cta-label
-          className={cn("inline-block leading-none", inkLabel)}
+          className={cn("inline-block leading-none", inkLabel, isSolid && "font-semibold")}
         >
           {children}
         </span>

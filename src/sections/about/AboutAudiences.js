@@ -43,7 +43,7 @@ export default function AboutAudiences() {
       innerClassName="mx-auto max-w-[1600px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="mb-14 flex max-w-[64rem] flex-col gap-6 md:mb-20">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -53,7 +53,7 @@ export default function AboutAudiences() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.04] tracking-[0.02em] text-foreground">
           <ScrubText>Three paths.</ScrubText>{" "}
           <span className="text-foreground/60">
             <ScrubText>One agency standard.</ScrubText>
@@ -98,7 +98,7 @@ export default function AboutAudiences() {
               />
             </div>
 
-            <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-accent">
+            <MaskedLine className="text-xs uppercase tracking-[0.28em] text-accent font-bold">
               {p.kicker}
             </MaskedLine>
 

@@ -33,7 +33,7 @@ export default function Contact() {
         ref={scrubRef}
         className="mx-auto flex max-w-[64rem] flex-col items-center gap-10 text-center md:gap-14"
       >
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"

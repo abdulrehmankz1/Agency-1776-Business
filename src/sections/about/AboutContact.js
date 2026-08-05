@@ -28,7 +28,7 @@ export default function AboutContact() {
     >
       <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div ref={scrubRef} className="flex flex-col gap-6">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"

@@ -28,7 +28,7 @@ export default function AboutEcosystem() {
           ref={scrubRef}
           className="flex flex-col gap-8 md:sticky md:top-40 md:self-start"
         >
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -38,7 +38,7 @@ export default function AboutEcosystem() {
             </span>
           </MaskedLine>
 
-          <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.04] tracking-[0.02em] text-foreground">
             <ScrubText>A specialized agency</ScrubText>{" "}
             <span className="text-foreground/60">
               <ScrubText>within a larger ecosystem.</ScrubText>

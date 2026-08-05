@@ -62,7 +62,7 @@ export default function ServicesProcess() {
     >
       <div className="grid gap-16 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-24">
         <div ref={scrubRef} className="flex flex-col gap-8 md:sticky md:top-40 md:self-start">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"
@@ -118,7 +118,7 @@ export default function ServicesProcess() {
       {/* The outcomes — what the finished system delivers. */}
       <div className="mt-24 md:mt-32">
         <div className="mb-10 flex items-center gap-4 md:mb-14">
-          <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+          <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-flex items-center gap-3">
               <span
                 data-reveal="icon"

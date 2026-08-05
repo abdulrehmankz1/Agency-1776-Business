@@ -50,7 +50,7 @@ function Deliverables({ items }) {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -111,7 +111,7 @@ function Process({ steps }) {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div ref={scrubRef} className="mb-14 flex flex-col gap-6">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -175,7 +175,7 @@ function Outcomes({ items }) {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -228,7 +228,7 @@ function NextService({ currentSlug }) {
       innerClassName="mx-auto max-w-[1400px] px-6 md:px-16"
     >
       <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -260,7 +260,7 @@ function NextService({ currentSlug }) {
               </div>
               <span
                 data-reveal="icon"
-                className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-accent"
+                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-accent font-bold"
               >
                 Read
                 <span className="inline-block h-px w-8 bg-accent transition-[width] duration-500 group-hover:w-16" />

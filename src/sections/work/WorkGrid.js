@@ -198,7 +198,7 @@ export default function WorkGrid() {
       {/* Eyebrow + intro copy — preserves the design language used by
           every other section header on the site. */}
       <div className="relative mx-auto mb-14 flex max-w-[1600px] flex-col gap-6 px-6 md:mb-16 md:px-16">
-        <MaskedLine className="text-[11px] uppercase tracking-[0.32em] text-accent">
+        <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
           <span className="inline-flex items-center gap-3">
             <span
               data-reveal="icon"
@@ -209,7 +209,7 @@ export default function WorkGrid() {
         </MaskedLine>
         <MaskedLine
           as="h2"
-          className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground"
+          className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.04] tracking-[0.02em] text-foreground"
         >
           Selected business website builds.
         </MaskedLine>
@@ -444,7 +444,7 @@ function ViewAllLink() {
       whileHover={{ x: 4 }}
       transition={{ type: "spring", stiffness: 400, damping: 26 }}
       data-cursor="link"
-      className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-accent"
+      className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-accent font-bold"
     >
       Discuss a project
       <span className="inline-block h-px w-8 bg-accent" />

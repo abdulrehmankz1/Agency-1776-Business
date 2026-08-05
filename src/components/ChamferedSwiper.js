@@ -142,7 +142,7 @@ export default function ChamferedSwiper({
     >
       {eyebrow && (
         <div className="mb-6 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-accent">
+          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.32em] text-accent font-bold">
             <span className="inline-block h-1.5 w-1.5 bg-accent" />
             {eyebrow}
           </div>
