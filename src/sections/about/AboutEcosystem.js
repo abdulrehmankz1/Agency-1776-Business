@@ -61,7 +61,7 @@ export default function AboutEcosystem() {
             <MaskedLine className="text-[11px] uppercase tracking-[0.28em] text-foreground/50">
               Inside that ecosystem, Agency 1776 has one clear role:
             </MaskedLine>
-            <p className="text-xl font-semibold leading-[1.25] tracking-[-0.01em] text-foreground md:text-2xl">
+            <p className="text-xl font-medium leading-[1.25] tracking-[-0.01em] text-foreground md:text-2xl">
               <MaskedLine>
                 Build the digital systems organizations need to move people to
                 act.

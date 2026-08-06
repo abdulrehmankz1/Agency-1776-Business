@@ -270,7 +270,7 @@ function ServiceCard({ n, title, body, Icon, col = 0 }) {
         <div className="flex flex-col gap-3">
           <MaskedLine
             as="h3"
-            className="text-lg md:text-xl font-semibold leading-[1.2] tracking-[0.03em] text-foreground"
+            className="text-lg md:text-xl font-medium leading-[1.2] tracking-[0.03em] text-foreground"
           >
             {title}
           </MaskedLine>

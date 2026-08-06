@@ -37,7 +37,7 @@ export default function AboutContact() {
               Next / 06
             </span>
           </MaskedLine>
-          <h2 className="max-w-2xl text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="max-w-2xl text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText>Booking Q1 2027 —</ScrubText>{" "}
             <StencilFill className="text-accent">talk soon.</StencilFill>
           </h2>

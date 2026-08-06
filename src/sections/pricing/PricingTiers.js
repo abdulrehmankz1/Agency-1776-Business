@@ -115,21 +115,32 @@ export default function PricingTiers() {
 
       <div
         ref={gridRef}
-        className="chamfer chamfer-md grid grid-cols-1 gap-px bg-muted/40 md:grid-cols-2"
+        className="chamfer chamfer-md grid grid-cols-1 gap-2 bg-background md:grid-cols-2 md:grid-rows-[auto_auto_1fr]"
         style={{
-          "--chamfer-border-color":
-            "color-mix(in srgb, var(--muted) 40%, transparent)",
-          "--chamfer-bg": "color-mix(in srgb, var(--muted) 40%, transparent)",
+          // Border + interior fill both ride the theme background. The muted
+          // outline used to read as a faint white diagonal at the chamfered
+          // corners (amplified when a card lifts on hover); matching it to the
+          // background removes that seam while the cards + gap carry the shape.
+          "--chamfer-border-color": "var(--background)",
+          // Gap between the cards shows the chamfer interior fill — keep it
+          // on the theme background (black in dark, light bg in light) so the
+          // channel reads as empty space rather than a grey muted band.
+          "--chamfer-bg": "var(--background)",
         }}
       >
         {TIERS.map((t, i) => (
-          <div key={t.id} data-stagger-item data-col={i} className="h-full">
+          <div
+            key={t.id}
+            data-stagger-item
+            data-col={i}
+            className="h-full md:row-span-3 md:grid md:grid-rows-subgrid"
+          >
             <motion.article
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 320, damping: 26 }}
               className={
                 (t.featured ? "bg-surface " : "bg-background ") +
-                "relative flex h-full flex-col gap-5 p-7 md:p-10"
+                "relative flex h-full flex-col gap-5 p-7 md:row-span-3 md:grid md:grid-rows-subgrid md:p-10"
               }
               style={{ backgroundImage: "var(--card-pinstripe)" }}
             >
@@ -154,7 +165,7 @@ export default function PricingTiers() {
                 </div>
                 <MaskedLine
                   as="h3"
-                  className="text-2xl font-semibold leading-[1.2] tracking-[0.02em] text-foreground md:text-[1.75rem]"
+                  className="text-2xl font-medium leading-[1.2] tracking-[0.02em] text-foreground md:text-[1.75rem]"
                 >
                   {t.tagline}
                 </MaskedLine>
@@ -183,33 +194,35 @@ export default function PricingTiers() {
                 </ul>
               </div>
 
-              <div className="flex flex-col gap-3 border-t border-muted/50 pt-5">
-                <MaskedLine className="text-xs uppercase tracking-[0.28em] text-foreground/40">
-                  Includes
-                </MaskedLine>
-                <ul className="flex flex-col gap-2">
-                  {t.includes.map((b, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-lg font-medium text-foreground/80"
-                    >
-                      <CheckGlyph
-                        data-reveal="icon"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                      />
-                      <MaskedLine>{b}</MaskedLine>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <div className="flex flex-col gap-5 md:h-full">
+                <div className="flex flex-col gap-3 border-t border-muted/50 pt-5">
+                  <MaskedLine className="text-xs uppercase tracking-[0.28em] text-foreground/40">
+                    Includes
+                  </MaskedLine>
+                  <ul className="flex flex-col gap-2">
+                    {t.includes.map((b, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-lg font-medium text-foreground/80"
+                      >
+                        <CheckGlyph
+                          data-reveal="icon"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                        />
+                        <MaskedLine>{b}</MaskedLine>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <CTAButton
-                href="/contact"
-                variant={t.featured ? "solid" : "primary"}
-                className="mt-auto"
-              >
-                {t.cta}
-              </CTAButton>
+                <CTAButton
+                  href="/contact"
+                  variant={t.featured ? "solid" : "primary"}
+                  className="mt-auto"
+                >
+                  {t.cta}
+                </CTAButton>
+              </div>
             </motion.article>
           </div>
         ))}

@@ -361,7 +361,7 @@ export default function Portfolio() {
               <h3
                 ref={titleRef}
                 data-scrub="word"
-                className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground"
+                className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground"
               >
                 {first.title}
               </h3>
@@ -614,7 +614,7 @@ function ProjectCarousel({ projects, count, onOpen }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[clamp(1.75rem,5vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground"
+          className="text-[clamp(1.75rem,5vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground"
         >
           {active_project.title}
         </motion.h3>

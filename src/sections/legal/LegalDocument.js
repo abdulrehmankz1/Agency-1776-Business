@@ -17,6 +17,7 @@ import { useSectionReveal } from "@/hooks/useSectionReveal";
  *     heading: string,
  *     blocks: Array<
  *       | string                                   // paragraph
+ *       | { type: "paragraph", content: ReactNode } // paragraph w/ inline links
  *       | { type: "list", items: string[] }        // bulleted list
  *       | { type: "subheading", text: string }     // inline sub-label
  *     >,
@@ -31,11 +32,19 @@ function Block({ block }) {
     );
   }
 
+  if (block.type === "paragraph") {
+    return (
+      <p className="text-base leading-relaxed text-foreground/70">
+        <MaskedLine block>{block.content}</MaskedLine>
+      </p>
+    );
+  }
+
   if (block.type === "subheading") {
     return (
       <MaskedLine
         as="h3"
-        className="pt-2 text-sm font-semibold uppercase tracking-[0.14em] text-foreground/85"
+        className="pt-2 text-sm font-medium uppercase tracking-[0.14em] text-foreground/85"
       >
         {block.text}
       </MaskedLine>

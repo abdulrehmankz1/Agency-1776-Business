@@ -76,7 +76,11 @@
       "Bash(python -m pip --version)",
       "Bash(python -m pip install --quiet pymupdf)",
       "Bash(python -c \"import fitz; print\\('fitz', fitz.__doc__ or 'ok'\\)\")",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(npx eslint *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(grep -vE \"warning|useLayoutEffect|no-img|^\\\\s*$\")",
+      "Bash(break)"
     ]
   }
 }

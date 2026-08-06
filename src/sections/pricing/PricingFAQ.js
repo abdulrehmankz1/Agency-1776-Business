@@ -56,7 +56,7 @@ export default function PricingFAQ() {
               >
                 <MaskedLine
                   as="h3"
-                  className="max-w-2xl text-lg font-semibold tracking-[-0.01em] text-foreground md:text-xl"
+                  className="max-w-2xl text-lg font-medium tracking-[-0.01em] text-foreground md:text-xl"
                 >
                   {f.q}
                 </MaskedLine>

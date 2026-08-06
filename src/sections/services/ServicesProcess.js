@@ -72,7 +72,7 @@ export default function ServicesProcess() {
             </span>
           </MaskedLine>
 
-          <h2 className="text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.02] tracking-[-0.02em] text-foreground">
             <ScrubText>We build the system around how your business</ScrubText>{" "}
             <StencilFill className="text-accent">gets leads.</StencilFill>
           </h2>
@@ -95,14 +95,14 @@ export default function ServicesProcess() {
             <li key={p.step} className="flex flex-col gap-4 py-10 md:flex-row md:gap-10">
               <span
                 data-reveal="icon"
-                className="font-display text-4xl font-semibold text-accent md:text-5xl"
+                className="font-display text-4xl font-medium text-accent md:text-5xl"
               >
                 {p.step}
               </span>
               <div className="flex flex-col gap-3">
                 <MaskedLine
                   as="h3"
-                  className="text-xl font-semibold tracking-[-0.01em] text-foreground md:text-2xl"
+                  className="text-xl font-medium tracking-[-0.01em] text-foreground md:text-2xl"
                 >
                   {p.label}
                 </MaskedLine>

@@ -46,7 +46,7 @@ export default function PageCTA({ eyebrow, index, heading, accent, children }) {
           </MaskedLine>
         )}
 
-        <h2 className="text-[clamp(2rem,6vw,4.5rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-foreground">
           <ScrubText>{heading}</ScrubText>
           {accent && (
             <>

@@ -37,7 +37,7 @@ export default function AboutExperience() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,5.5vw,4.25rem)] font-semibold leading-[1.03] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,5.5vw,4.25rem)] font-medium leading-[1.03] tracking-[-0.02em] text-foreground">
           <ScrubText>The Agency 1776</ScrubText>{" "}
           <StencilFill className="text-accent">experience.</StencilFill>
         </h2>

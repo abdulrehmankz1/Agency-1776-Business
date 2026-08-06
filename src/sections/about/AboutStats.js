@@ -58,7 +58,7 @@ export default function AboutStats() {
           >
             <span
               data-reveal="icon"
-              className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-5xl"
+              className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-5xl"
             >
               {s.value}
             </span>
