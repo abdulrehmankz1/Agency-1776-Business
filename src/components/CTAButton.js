@@ -52,11 +52,25 @@ const CTAButton = forwardRef(function CTAButton(
     const dot   = el.querySelector("[data-cta-dot]");
     const line  = el.querySelector("[data-cta-line]");
 
+    // On the primary (outline) variant the accent fill sweeps in on hover,
+    // so the label must ride from its resting theme color to white to stay
+    // legible on the red. Capture the resting color now; restore via
+    // clearProps on leave so it always tracks the live theme.
+    const isPrimary = variant !== "solid";
+    const restLabelColor =
+      label && typeof window !== "undefined"
+        ? window.getComputedStyle(label).color
+        : "";
+
     // Resting state.
     gsap.set(fill, {
       clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%)",
     });
-    gsap.set(dot,   { width: 6, height: 6 });
+    // Dot keeps a fixed 6×6 layout box; the hover morph into a bar rides
+    // on scaleX/scaleY (transform, not width/height) so it never reflows
+    // the nav row — growing width used to widen the button and nudge the
+    // whole navbar on hover.
+    gsap.set(dot,   { width: 6, height: 6, transformOrigin: "left center" });
     gsap.set(line,  { scaleX: 1, transformOrigin: "left center" });
     gsap.set(label, { y: 0 });
     // Prime the filter/boxShadow tracks so GSAP has a matching structure
@@ -108,10 +122,10 @@ const CTAButton = forwardRef(function CTAButton(
             ease: "power3.out",
           });
         }
-        // Dot morphs into a slim horizontal bar. Color follows the label tone.
+        // Dot morphs into a slim horizontal bar via transform only.
         gsap.to(dot, {
-          width: 22,
-          height: 2,
+          scaleX: 22 / 6,
+          scaleY: 2 / 6,
           duration: 0.5,
           ease: "power3.out",
         });
@@ -120,6 +134,13 @@ const CTAButton = forwardRef(function CTAButton(
           duration: 0.4,
           ease: "power3.out",
         });
+        if (isPrimary) {
+          gsap.to(label, {
+            color: "#ffffff",
+            duration: 0.45,
+            ease: "power3.out",
+          });
+        }
         gsap.to(line, {
           scaleX: 1.6,
           duration: 0.55,
@@ -160,13 +181,21 @@ const CTAButton = forwardRef(function CTAButton(
           });
         }
         gsap.to(dot, {
-          width: 6, height: 6,
+          scaleX: 1, scaleY: 1,
           duration: 0.4, ease: "power3.out",
         });
         gsap.to(label, {
           y: 0,
           duration: 0.35, ease: "power3.out",
         });
+        if (isPrimary) {
+          gsap.to(label, {
+            color: restLabelColor,
+            duration: 0.35,
+            ease: "power3.out",
+            onComplete: () => gsap.set(label, { clearProps: "color" }),
+          });
+        }
         gsap.to(line, {
           scaleX: 1,
           duration: 0.4, ease: "power3.out",
@@ -233,8 +262,11 @@ const CTAButton = forwardRef(function CTAButton(
     "--chamfer-border-color": "var(--accent)",
     "--chamfer-bg": isSolid ? "var(--accent)" : "var(--background)",
   };
-  const inkLabel = isSolid ? "text-background" : "text-foreground";
-  const inkColor = isSolid ? "bg-background" : "bg-accent";
+  // Solid buttons are red in every theme, so their label/dot/line stay
+  // white for legible contrast on the crimson fill. Primary buttons only
+  // turn red on hover — their white-on-red handoff is animated below.
+  const inkLabel = isSolid ? "text-white" : "text-foreground";
+  const inkColor = isSolid ? "bg-white" : "bg-accent";
 
   return (
     <Tag

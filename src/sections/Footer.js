@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import SectionShell from "@/components/SectionShell";
 import { MaskedLine } from "@/components/MaskedLine";
@@ -29,13 +30,21 @@ const CONTACT_LINKS = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms and Conditions", href: "/terms-and-conditions" },
 ];
 
 const MotionLink = motion.create(Link);
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Highlight the link for the page we're currently on. Route links
+  // only (mailto/#anchor links never match a pathname).
+  const isActive = (href) =>
+    href.startsWith("/") &&
+    (pathname === href || pathname?.startsWith(href + "/"));
+
   const revealRef = useSectionReveal({
     start: "top bottom",
     toggleActions: "play none none none",
@@ -54,6 +63,25 @@ export default function Footer() {
       <div className="grid gap-14 md:grid-cols-[1.4fr_1fr] md:gap-20">
         {/* Left column: brand + tagline */}
         <div className="flex flex-col gap-8">
+          {/* AGENCY 1776 lockup — light/dark variant swapped by theme */}
+          <Link
+            href="/"
+            data-cursor="link"
+            aria-label="Agency 1776 — home"
+            className="inline-flex items-center"
+          >
+            <img
+              src="/logo-agency.png"
+              alt="Agency 1776"
+              className="logo-light h-11 w-auto"
+            />
+            <img
+              src="/logo-agency-dark.png"
+              alt="Agency 1776"
+              className="logo-dark h-11 w-auto"
+            />
+          </Link>
+
           <div className="flex items-center gap-4">
             <span
               data-reveal="icon"
@@ -67,7 +95,7 @@ export default function Footer() {
 
           <MaskedLine
             as="h2"
-            className="font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1] tracking-[-0.01em] text-foreground"
+            className="font-display text-[clamp(2.35rem,4.6vw,3.85rem)] leading-[1] tracking-[-0.01em] text-foreground"
           >
             Let&rsquo;s build something worth visiting.
           </MaskedLine>
@@ -90,29 +118,37 @@ export default function Footer() {
         {/* Right column: navigation + contact */}
         <div className="grid grid-cols-2 gap-10">
           <nav aria-label="Sitemap" className="flex flex-col gap-4">
-            <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
+            <MaskedLine className="font-mono text-[13px] uppercase tracking-[0.28em] text-foreground/40">
               Navigate
             </MaskedLine>
             <ul className="flex flex-col gap-3">
-              {PRIMARY_LINKS.map((link) => (
-                <li key={link.href} className="overflow-hidden">
-                  <MotionLink
-                    href={link.href}
-                    data-cursor="link"
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 480, damping: 30 }}
-                    className="inline-block text-sm tracking-[-0.005em] text-foreground/75 hover:text-foreground"
-                    data-reveal="text-line"
-                  >
-                    {link.label}
-                  </MotionLink>
-                </li>
-              ))}
+              {PRIMARY_LINKS.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <li key={link.href} className="overflow-hidden">
+                    <MotionLink
+                      href={link.href}
+                      data-cursor="link"
+                      aria-current={active ? "page" : undefined}
+                      whileHover={{ x: 4 }}
+                      transition={{ type: "spring", stiffness: 480, damping: 30 }}
+                      className={`inline-block text-base tracking-[-0.005em] ${
+                        active
+                          ? "text-accent font-medium"
+                          : "text-foreground/75 hover:text-foreground"
+                      }`}
+                      data-reveal="text-line"
+                    >
+                      {link.label}
+                    </MotionLink>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
           <div className="flex flex-col gap-4">
-            <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
+            <MaskedLine className="font-mono text-[13px] uppercase tracking-[0.28em] text-foreground/40">
               Direct
             </MaskedLine>
             <ul className="flex flex-col gap-3">
@@ -126,7 +162,7 @@ export default function Footer() {
                       data-cursor="link"
                       whileHover={{ x: 4 }}
                       transition={{ type: "spring", stiffness: 480, damping: 30 }}
-                      className="inline-block text-sm tracking-[-0.005em] text-foreground/75 hover:text-foreground"
+                      className="inline-block text-base tracking-[-0.005em] text-foreground/75 hover:text-foreground"
                       data-reveal="text-line"
                     >
                       {link.label}
@@ -142,41 +178,32 @@ export default function Footer() {
       {/* Meta strip — separator + copyright + legal + credits */}
       <div className="mt-16 flex flex-col-reverse items-start justify-between gap-4 border-t border-muted/25 pt-6 md:mt-20 md:flex-row md:items-center">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-          <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
+          <MaskedLine className="font-mono text-[13px] uppercase tracking-[0.28em] text-foreground/40">
             &copy; 2026 Agency 1776 &middot; New York
           </MaskedLine>
-          <span className="flex items-center gap-4">
-            {LEGAL_LINKS.map((link) => (
+        </div>
+        <span className="flex items-center gap-4">
+          {LEGAL_LINKS.map((link) => {
+            const active = isActive(link.href);
+            return (
               <span key={link.href} className="overflow-hidden">
                 <MotionLink
                   href={link.href}
                   data-cursor="link"
+                  aria-current={active ? "page" : undefined}
                   whileHover={{ x: 4 }}
                   transition={{ type: "spring", stiffness: 480, damping: 30 }}
-                  className="inline-block font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40 hover:text-foreground"
+                  className={`inline-block font-mono text-[13px] uppercase tracking-[0.28em] ${
+                    active ? "text-accent" : "text-foreground/40 hover:text-foreground"
+                  }`}
                   data-reveal="text-line"
                 >
                   {link.label}
                 </MotionLink>
               </span>
-            ))}
-          </span>
-        </div>
-        <div className="flex items-center gap-6">
-          <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
-            Booking Q4
-          </MaskedLine>
-          <span className="flex items-center gap-2">
-            <span
-              data-reveal="icon"
-              aria-hidden
-              className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
-            />
-            <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
-              Live
-            </MaskedLine>
-          </span>
-        </div>
+            );
+          })}
+        </span>
       </div>
     </SectionShell>
   );

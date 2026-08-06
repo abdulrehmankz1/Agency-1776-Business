@@ -263,25 +263,23 @@ export default function Nav() {
         data-cursor="link"
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-3.5 md:gap-4 md:px-8 md:py-4 lg:px-12 lg:py-5">
-          {/* Logo */}
+          {/* Logo — AGENCY 1776 lockup, light/dark variant swapped by theme */}
           <Link
             href="/"
             data-cursor="link"
-            aria-label="Home"
-            className="group inline-flex shrink-0 items-center gap-2.5 text-foreground sm:gap-3"
+            aria-label="Agency 1776 — home"
+            className="group inline-flex shrink-0 items-center text-foreground"
           >
-            <span
-              className="chamfer chamfer-xs grid h-7 w-7 place-items-center"
-              style={{
-                "--chamfer-border-color":
-                  "color-mix(in srgb, var(--muted) 70%, transparent)",
-              }}
-            >
-              <span className="h-2 w-2 bg-accent transition-transform duration-500 group-hover:rotate-45" />
-            </span>
-            <span className="whitespace-nowrap text-xs uppercase tracking-[0.24em] sm:text-sm sm:tracking-[0.28em]">
-              Agency 1776
-            </span>
+            <img
+              src="/logo-agency.png"
+              alt="Agency 1776"
+              className="logo-light h-8 w-auto md:h-9"
+            />
+            <img
+              src="/logo-agency-dark.png"
+              alt="Agency 1776"
+              className="logo-dark h-8 w-auto md:h-9"
+            />
           </Link>
 
           {/* Inline nav — lg+ only */}

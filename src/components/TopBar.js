@@ -18,9 +18,7 @@ const TABS = [
 const TOPBAR_BG      = "rgba(0, 0, 0, 0.95)";        // dark theme --background @ 95%
 const TOPBAR_BORDER  = "rgba(74, 74, 74, 0.4)";      // dark theme --muted @ 40%
 const TOPBAR_FG      = "#f5f2ec";                    // dark theme --foreground (cream)
-const TOPBAR_FG_HALF = "rgba(245, 242, 236, 0.5)";
 const TOPBAR_FG_45   = "rgba(245, 242, 236, 0.45)";
-const TOPBAR_FG_30   = "rgba(245, 242, 236, 0.3)";
 const TOPBAR_WHITE   = "#ffffff";                    // division tabs — full white for readability
 const TOPBAR_ACCENT  = "#bf0a30";                    // brand crimson (hover feedback)
 
@@ -56,18 +54,6 @@ export default function TopBar() {
           {TABS.map((t) => (
             <TopBarTab key={t.id} tab={t} />
           ))}
-        </div>
-
-        <div
-          className="hidden shrink-0 items-center gap-4 whitespace-nowrap text-[11px] uppercase tracking-[0.28em] lg:flex"
-          style={{ color: TOPBAR_FG_HALF }}
-        >
-          <span className="inline-flex items-center gap-2">
-            <span className="inline-block h-1 w-1 rounded-full bg-accent" />
-            Business Division
-          </span>
-          <span style={{ color: TOPBAR_FG_30 }}>/</span>
-          <span>Est. MMXXIV</span>
         </div>
       </div>
     </div>
