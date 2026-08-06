@@ -95,6 +95,17 @@
   color-scheme: light;
 }
 
+/* Brand logo theme swap — the AGENCY 1776 lockup ships in two color variants
+   (`logo-agency.png` black text for light backgrounds, `logo-agency-dark.png`
+   white text for dark backgrounds). This studio's canonical mode is dark
+   ("black"), so the white/dark lockup shows by default and the black/light one
+   is swapped in only under `[data-theme="light"]`. Driven purely by the
+   `data-theme` attribute on <html>, so there is no hydration flash. */
+.logo-light { display: none; }
+.logo-dark { display: block; }
+[data-theme="light"] .logo-light { display: block; }
+[data-theme="light"] .logo-dark { display: none; }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

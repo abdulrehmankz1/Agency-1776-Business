@@ -2,7 +2,7 @@ import PageHero from "@/components/PageHero";
 import LegalDocument from "@/sections/legal/LegalDocument";
 
 export const metadata = {
-  title: "Terms of Service · Agency 1776 Business",
+  title: "Terms and Conditions · Agency 1776 Business",
   description:
     "The terms that govern your use of the Agency 1776 website and the services we provide.",
 };
@@ -127,8 +127,8 @@ export default function TermsPage() {
         showMeta={false}
         backdrop="scan"
         heading={{
-          lead: "Terms of",
-          accent: "Service.",
+          lead: "Terms and",
+          accent: "Conditions.",
         }}
         description={[
           "The terms that govern your use of our",
