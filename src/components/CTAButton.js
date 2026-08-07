@@ -122,9 +122,12 @@ const CTAButton = forwardRef(function CTAButton(
             ease: "power3.out",
           });
         }
-        // Dot morphs into a slim horizontal bar via transform only.
+        // Dot morphs into a slim horizontal bar via transform only. Bar
+        // width is capped so its right edge stays clear of the label —
+        // the dot sits 6px wide with a 12px (gap-3) gutter to the text, so
+        // a 12px bar leaves ~6px clearance and never runs into the glyphs.
         gsap.to(dot, {
-          scaleX: 22 / 6,
+          scaleX: 12 / 6,
           scaleY: 2 / 6,
           duration: 0.5,
           ease: "power3.out",

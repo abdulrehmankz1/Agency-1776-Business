@@ -228,7 +228,7 @@ export default function ContactForm() {
             </span>
           </MaskedLine>
 
-          <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.02em] text-foreground">
             <ScrubText>Start the conversation.</ScrubText>
           </h2>
 
@@ -317,7 +317,7 @@ export default function ContactForm() {
               required={hasPhone}
             >
               I agree to receive account and project-related text messages from
-              Agency 1776 Business at the number provided. Message frequency
+              Agency 1776 at the number provided. Message frequency
               varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP
               for help.
             </ConsentCheckbox>
@@ -329,7 +329,7 @@ export default function ContactForm() {
               required={hasPhone}
             >
               I agree to receive occasional promotional and marketing text
-              messages from Agency 1776 Business. Message frequency varies. Msg
+              messages from Agency 1776. Message frequency varies. Msg
               &amp; data rates may apply. Reply STOP to opt out, HELP for help.
             </ConsentCheckbox>
           </fieldset>

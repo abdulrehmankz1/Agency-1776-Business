@@ -52,7 +52,7 @@ export default function ContactStudios() {
           >
             <MaskedLine
               as="h3"
-              className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl"
+              className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl"
             >
               {s.city}
             </MaskedLine>

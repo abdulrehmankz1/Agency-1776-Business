@@ -57,7 +57,7 @@ export default function AboutPrinciples() {
             </span>
           </MaskedLine>
 
-          <h2 className="text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.02] tracking-[-0.02em] text-foreground">
             <ScrubText>Four decisions we make</ScrubText>{" "}
             <span className="text-foreground/60">
               <ScrubText>on every project.</ScrubText>
@@ -85,7 +85,7 @@ export default function AboutPrinciples() {
               <div className="flex flex-col gap-3">
                 <MaskedLine
                   as="h3"
-                  className="text-xl font-semibold tracking-[-0.01em] text-foreground md:text-2xl"
+                  className="text-xl font-medium tracking-[-0.01em] text-foreground md:text-2xl"
                 >
                   {p.title}
                 </MaskedLine>

@@ -82,7 +82,7 @@ function TeamCard({ member }) {
       </blockquote>
 
       <div className="flex flex-col gap-3">
-        <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl">
+        <h3 className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl">
           {member.name}
         </h3>
         <span className="text-xs uppercase tracking-[0.32em] text-accent font-bold">

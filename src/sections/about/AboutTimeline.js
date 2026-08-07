@@ -61,7 +61,7 @@ export default function AboutTimeline() {
                     </MaskedLine>
                     <MaskedLine
                       as="h3"
-                      className="mt-2 text-lg font-semibold tracking-[-0.01em] text-foreground"
+                      className="mt-2 text-lg font-medium tracking-[-0.01em] text-foreground"
                     >
                       {m.title}
                     </MaskedLine>
@@ -82,7 +82,7 @@ export default function AboutTimeline() {
                 </MaskedLine>
                 <MaskedLine
                   as="h3"
-                  className="mt-2 text-lg font-semibold tracking-[-0.01em] text-foreground"
+                  className="mt-2 text-lg font-medium tracking-[-0.01em] text-foreground"
                 >
                   {m.title}
                 </MaskedLine>

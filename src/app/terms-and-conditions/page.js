@@ -1,121 +1,137 @@
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import LegalDocument from "@/sections/legal/LegalDocument";
 
 export const metadata = {
-  title: "Terms and Conditions · Agency 1776 Business",
+  title: "Terms and Conditions · Agency 1776",
   description:
-    "The terms that govern your use of the Agency 1776 website and the services we provide.",
+    "The terms and conditions that govern your use of the Agency 1776 website.",
 };
+
+// Inline link treatment shared by the interlink + contact links below.
+const linkClass =
+  "text-accent underline decoration-accent/40 underline-offset-2 transition-colors hover:text-foreground";
 
 const SECTIONS = [
   {
-    heading: "Acceptance of terms",
+    heading: "Website use",
     blocks: [
-      "By accessing or using the Agency 1776 website (the “Site”) or engaging our services, you agree to be bound by these Terms of Service. If you do not agree, please do not use the Site or our services.",
-    ],
-  },
-  {
-    heading: "Our services",
-    blocks: [
-      "Agency 1776 provides marketing, creative, and digital systems services, including but not limited to websites, funnels, advertising, and marketing automation. The Site describes our offerings for informational purposes; it does not constitute an offer or contract on its own.",
-      "The specific scope, deliverables, fees, and timeline for any engagement are defined in a separate written proposal or agreement (a “Project Agreement”). In the event of a conflict between these Terms and a signed Project Agreement, the Project Agreement controls.",
-    ],
-  },
-  {
-    heading: "Proposals and engagements",
-    blocks: [
-      "Submitting a contact form or inquiry does not create a binding engagement. An engagement begins only when both parties execute a Project Agreement. We reserve the right to decline any inquiry or project at our discretion.",
-    ],
-  },
-  {
-    heading: "Client responsibilities",
-    blocks: [
-      "To deliver our services effectively, we rely on you to:",
+      "You agree to use this website only for lawful purposes and in a manner that does not interfere with its operation or the experience of other visitors.",
+      "You may not:",
       {
         type: "list",
         items: [
-          "Provide accurate, complete information and timely feedback, approvals, and materials.",
-          "Hold the necessary rights to any content, trademarks, or assets you provide to us for use in your project.",
-          "Comply with all applicable laws in connection with your project and business.",
+          "Submit false or misleading information",
+          "Attempt unauthorized access to our systems",
+          "Introduce malicious software or harmful code",
+          "Use this website for unlawful purposes",
         ],
       },
-      "Delays in providing required materials or approvals may affect project timelines.",
-    ],
-  },
-  {
-    heading: "Fees and payment",
-    blocks: [
-      "Fees, payment schedules, and any deposit or retainer requirements are set out in your Project Agreement. Unless otherwise stated, invoices are due on the terms specified there. Late or missed payments may result in suspension of work.",
     ],
   },
   {
     heading: "Intellectual property",
     blocks: [
-      "Ownership and licensing of project deliverables are governed by your Project Agreement. Unless otherwise agreed, final deliverables transfer to you upon full payment.",
-      "The Site itself — including its design, text, graphics, and code, excluding client-provided materials — is owned by Agency 1776 and protected by intellectual property laws. You may not copy, reproduce, or reuse it without our permission.",
+      "All content on this website, including text, graphics, branding, logos, images, designs, videos, and other creative materials, is the property of Agency 1776 unless otherwise stated.",
+      "No content may be reproduced, copied, modified, or distributed without prior written permission.",
     ],
   },
   {
-    heading: "Acceptable use",
+    heading: "Project inquiries",
     blocks: [
-      "You agree not to:",
+      "Submitting a project inquiry or consultation request does not establish a contractual relationship or guarantee that Agency 1776 will accept a project.",
+    ],
+  },
+  {
+    heading: "SMS terms",
+    blocks: [
+      "If you opt in to receive SMS communications:",
       {
         type: "list",
         items: [
-          "Use the Site for any unlawful purpose or in violation of these Terms.",
-          "Attempt to gain unauthorized access to the Site, its systems, or its data.",
-          "Interfere with or disrupt the integrity or performance of the Site.",
-          "Introduce malware or use automated means to scrape or overload the Site.",
+          "Message frequency varies.",
+          "Message and data rates may apply.",
+          "Reply STOP to unsubscribe.",
+          "Reply HELP for assistance.",
+          "SMS consent is not a condition of purchasing services.",
         ],
+      },
+      "SMS opt-in information and consent will not be shared, sold, rented, or disclosed to third parties or affiliates for marketing purposes.",
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Please review our{" "}
+            <Link href="/privacy-policy" data-cursor="link" className={linkClass}>
+              Privacy Policy
+            </Link>{" "}
+            to learn how we collect, use, and protect your personal information.
+          </>
+        ),
       },
     ],
   },
   {
-    heading: "Third-party services and links",
+    heading: "Third-party services",
     blocks: [
-      "The Site and our services may rely on or link to third-party platforms and websites. We are not responsible for the content, policies, or practices of third parties, and your use of them is governed by their own terms.",
+      "Our website may include links to external websites or services. Agency 1776 is not responsible for the content or practices of those third-party websites.",
     ],
   },
   {
-    heading: "Disclaimers",
+    heading: "Disclaimer",
     blocks: [
-      "The Site and its content are provided “as is” and “as available,” without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the Site will be uninterrupted, error-free, or secure.",
+      "Information on this website is provided for general informational purposes. While we strive to keep content accurate and up to date, we make no guarantees regarding completeness or accuracy.",
     ],
   },
   {
     heading: "Limitation of liability",
     blocks: [
-      "To the fullest extent permitted by law, Agency 1776 will not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenue, arising out of your use of the Site or our services. Where liability cannot be excluded, it is limited to the amount you paid us for the services giving rise to the claim.",
-    ],
-  },
-  {
-    heading: "Indemnification",
-    blocks: [
-      "You agree to indemnify and hold harmless Agency 1776 and its team from any claims, damages, or expenses arising out of your breach of these Terms, your misuse of the Site, or content or materials you provide to us.",
-    ],
-  },
-  {
-    heading: "Termination",
-    blocks: [
-      "We may suspend or terminate your access to the Site at any time for any reason, including violation of these Terms. Termination of a project engagement is governed by your Project Agreement.",
-    ],
-  },
-  {
-    heading: "Governing law",
-    blocks: [
-      "These Terms are governed by the laws of the State of New York, without regard to its conflict-of-laws principles. Any dispute arising under these Terms will be subject to the exclusive jurisdiction of the state and federal courts located in New York.",
+      "To the fullest extent permitted by law, Agency 1776 shall not be liable for any indirect, incidental, consequential, or special damages arising from the use of this website.",
     ],
   },
   {
     heading: "Changes to these terms",
     blocks: [
-      "We may update these Terms from time to time. When we do, we will revise the “Last updated” date at the top of this page. Your continued use of the Site after changes take effect constitutes acceptance of the updated Terms.",
+      "We reserve the right to update these Terms & Conditions at any time. Any changes will become effective upon publication on this page.",
     ],
   },
   {
-    heading: "Contact us",
+    heading: "Governing law",
     blocks: [
-      "Questions about these Terms? Reach us at hello@1776.studio.",
+      "These Terms & Conditions are governed by the laws of the State of Arizona, without regard to its conflict of law principles.",
+    ],
+  },
+  {
+    heading: "Contact",
+    blocks: [
+      "Agency 1776",
+      "2325 E Camelback Rd, Suite 400, Phoenix, AZ 85016, USA",
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Email:{" "}
+            <a
+              href="mailto:outdevelopment@op1776.com"
+              data-cursor="link"
+              className={linkClass}
+            >
+              outdevelopment@op1776.com
+            </a>
+          </>
+        ),
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Phone:{" "}
+            <a href="tel:+18446201776" data-cursor="link" className={linkClass}>
+              +1 (844) 620-1776
+            </a>
+          </>
+        ),
+      },
     ],
   },
 ];
@@ -136,8 +152,8 @@ export default function TermsPage() {
         ]}
       />
       <LegalDocument
-        lastUpdated="August 5, 2026"
-        intro="These Terms of Service govern your access to and use of the Agency 1776 website and the services we provide. Please read them carefully."
+        lastUpdated="August 2026"
+        intro="These Terms & Conditions govern your use of the Agency 1776 website. By accessing or using this website, you agree to these Terms."
         sections={SECTIONS}
       />
     </>

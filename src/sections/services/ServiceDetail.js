@@ -81,7 +81,7 @@ function Deliverables({ items }) {
           >
             <span
               data-reveal="icon"
-              className="font-display text-2xl font-semibold leading-none text-accent md:text-3xl"
+              className="font-display text-2xl font-medium leading-none text-accent md:text-3xl"
             >
               {String(i + 1).padStart(2, "0")}
             </span>
@@ -120,7 +120,7 @@ function Process({ steps }) {
             Process / 03
           </span>
         </MaskedLine>
-        <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-foreground">
           <ScrubText>Four phases,</ScrubText>{" "}
           <StencilFill className="text-accent">predictable.</StencilFill>
         </h2>
@@ -144,14 +144,14 @@ function Process({ steps }) {
             }}
           >
             <div className="flex items-center justify-between">
-              <span className="font-display text-5xl font-semibold text-accent md:text-6xl">
+              <span className="font-display text-5xl font-medium text-accent md:text-6xl">
                 {s.step}
               </span>
               <span className="text-[11px] uppercase tracking-[0.32em] text-foreground/40">
                 Phase
               </span>
             </div>
-            <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl">
+            <h3 className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl">
               {s.label}
             </h3>
             <p className="mt-auto max-w-md text-base font-medium leading-relaxed text-foreground/70">
@@ -202,7 +202,7 @@ function Outcomes({ items }) {
           >
             <span
               data-reveal="icon"
-              className="font-display text-3xl font-semibold text-accent"
+              className="font-display text-3xl font-medium text-accent"
             >
               0{i + 1}
             </span>
@@ -254,7 +254,7 @@ function NextService({ currentSlug }) {
                 <span className="text-[11px] uppercase tracking-[0.28em] text-foreground/40">
                   {s.n} · {s.engagement}
                 </span>
-                <span className="font-display text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-3xl">
+                <span className="font-display text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
                   {s.title}
                 </span>
               </div>

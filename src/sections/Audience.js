@@ -50,7 +50,7 @@ export default function Audience() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-foreground">
           <ScrubText>We support business owners</ScrubText>{" "}
           <span className="text-foreground/70">
             <ScrubText>who need</ScrubText>

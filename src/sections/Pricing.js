@@ -156,7 +156,7 @@ function InvestmentPanel() {
 
         <div className="flex items-baseline gap-3">
           <MaskedLine
-            innerClassName="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-semibold tracking-[-0.02em] text-foreground"
+            innerClassName="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-medium tracking-[-0.02em] text-foreground"
             className="leading-[1]"
           >
             {INVESTMENT.range}

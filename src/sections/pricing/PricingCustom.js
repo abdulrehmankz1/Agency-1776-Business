@@ -42,7 +42,7 @@ export default function PricingCustom() {
               Custom builds
             </span>
           </MaskedLine>
-          <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText>Need something more custom?</ScrubText>
           </h2>
         </div>

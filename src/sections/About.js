@@ -48,7 +48,7 @@ export default function About() {
             </span>
           </MaskedLine>
 
-          <h2 className="text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2.25rem,5.5vw,4rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText mode="word">
               A small studio built around one belief: that thoughtful software
               is still a competitive advantage.
@@ -95,7 +95,7 @@ export default function About() {
               >
                 <span
                   data-reveal="icon"
-                  className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl"
+                  className="font-display text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl"
                 >
                   {s.value}
                 </span>

@@ -59,7 +59,7 @@ export default function ContactChannels() {
             </MaskedLine>
             <MaskedLine
               as="span"
-              className="font-display text-2xl font-semibold tracking-[-0.02em] text-foreground group-hover:text-accent md:text-3xl"
+              className="font-display text-2xl font-medium tracking-[-0.02em] text-foreground group-hover:text-accent md:text-3xl"
             >
               {c.value}
             </MaskedLine>

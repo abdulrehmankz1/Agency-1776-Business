@@ -43,7 +43,7 @@ export default function Contact() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,5vw,4.25rem)] font-semibold leading-[1.04] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,5vw,4.25rem)] font-medium leading-[1.04] tracking-[-0.02em] text-foreground">
           <ScrubText>Ready to build a growth system that</ScrubText>{" "}
           <StencilFill className="text-accent">works after the click?</StencilFill>
         </h2>

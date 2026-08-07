@@ -92,7 +92,7 @@ function ProblemApproach({ project }) {
               The story / 03
             </span>
           </MaskedLine>
-          <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
             <ScrubText>Problem in.</ScrubText>{" "}
             <StencilFill className="text-accent">Number out.</StencilFill>
           </h2>
@@ -161,7 +161,7 @@ function Metrics({ project }) {
           >
             <span
               data-reveal="icon"
-              className="font-display text-3xl font-semibold tracking-[-0.02em] text-accent md:text-5xl"
+              className="font-display text-3xl font-medium tracking-[-0.02em] text-accent md:text-5xl"
             >
               {m.value}
             </span>
@@ -275,7 +275,7 @@ function NextProject({ currentSlug }) {
           </MaskedLine>
           <MaskedLine
             as="h3"
-            className="font-display text-[clamp(1.5rem,3.6vw,3rem)] font-semibold tracking-[-0.02em] text-foreground"
+            className="font-display text-[clamp(1.5rem,3.6vw,3rem)] font-medium tracking-[-0.02em] text-foreground"
           >
             {next.title}
           </MaskedLine>

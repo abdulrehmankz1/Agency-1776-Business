@@ -87,7 +87,7 @@ export default function ValueGrid() {
           </span>
         </MaskedLine>
 
-        <h2 className="text-[clamp(2rem,4.75vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+        <h2 className="text-[clamp(2rem,4.75vw,3.75rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
           <ScrubText mode="word">
             Help your business grow every day.
           </ScrubText>
@@ -138,7 +138,7 @@ function ValueCard({ n, title, body, Icon, col }) {
       <div className="flex items-start justify-between gap-4">
         <span
           data-reveal="icon"
-          className="font-display text-4xl font-semibold leading-none tracking-[-0.02em] text-foreground/85 md:text-5xl"
+          className="font-display text-4xl font-medium leading-none tracking-[-0.02em] text-foreground/85 md:text-5xl"
         >
           {n}
         </span>
@@ -151,7 +151,7 @@ function ValueCard({ n, title, body, Icon, col }) {
       <div className="flex flex-col gap-4">
         <MaskedLine
           as="h3"
-          className="text-lg font-semibold uppercase leading-[1.35] tracking-[0.18em] text-foreground"
+          className="text-lg font-medium uppercase leading-[1.35] tracking-[0.18em] text-foreground"
         >
           {title}
         </MaskedLine>

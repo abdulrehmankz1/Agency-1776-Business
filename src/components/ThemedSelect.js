@@ -55,6 +55,24 @@ export default function ThemedSelect({
     }
   }, [open, activeIndex]);
 
+  // GSAP ScrollSmoother runs with `normalizeScroll`, which intercepts wheel /
+  // touch events at the document level to drive the page scroll. That hijack
+  // also swallows scrolling inside this nested overflow list, so a long option
+  // list (e.g. "What do you need help with?") couldn't be scrolled with the
+  // wheel. Stop those events at the list itself so they never reach the
+  // normalizer — the browser's native scroll then works inside the dropdown.
+  useEffect(() => {
+    const el = listRef.current;
+    if (!open || !el) return;
+    const stop = (e) => e.stopPropagation();
+    el.addEventListener("wheel", stop, { passive: true });
+    el.addEventListener("touchmove", stop, { passive: true });
+    return () => {
+      el.removeEventListener("wheel", stop);
+      el.removeEventListener("touchmove", stop);
+    };
+  }, [open]);
+
   const commit = (i) => {
     if (i < 0 || i >= options.length) return;
     onChange(options[i]);
@@ -138,13 +156,14 @@ export default function ThemedSelect({
       </button>
 
       {open && (
-        <ul
-          ref={listRef}
-          id={listboxId}
-          role="listbox"
-          aria-label={label}
-          tabIndex={-1}
-          className="chamfer chamfer-sm absolute left-0 right-0 top-[calc(100%+8px)] z-30 max-h-64 overflow-y-auto py-1"
+        // The chamfer + its opaque interior fill live on this NON-scrolling
+        // wrapper. The interior comes from `.chamfer`'s `::before` (z-index:-1);
+        // putting `overflow-y-auto` on the same element suppressed that pseudo
+        // fill, leaving only the translucent accent border colour as the bg —
+        // which is why the form behind bled through. Scrolling now happens on
+        // the inner <ul>, so the fill renders solid.
+        <div
+          className="chamfer chamfer-sm absolute left-0 right-0 top-[calc(100%+8px)] z-30"
           style={{
             "--chamfer-border-color":
               "color-mix(in srgb, var(--accent) 45%, transparent)",
@@ -156,7 +175,15 @@ export default function ThemedSelect({
             filter: "drop-shadow(0 16px 32px var(--themed-select-shadow))",
           }}
         >
-          {options.map((opt, i) => {
+          <ul
+            ref={listRef}
+            id={listboxId}
+            role="listbox"
+            aria-label={label}
+            tabIndex={-1}
+            className="max-h-64 overflow-y-auto py-1"
+          >
+            {options.map((opt, i) => {
             const isSelected = opt === value;
             const isActive = i === activeIndex;
             return (
@@ -180,8 +207,9 @@ export default function ThemedSelect({
                 {opt}
               </li>
             );
-          })}
-        </ul>
+            })}
+          </ul>
+        </div>
       )}
     </div>
   );

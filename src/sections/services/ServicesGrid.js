@@ -132,7 +132,7 @@ function ServiceCard({ n, title, body, col = 0 }) {
         <div className="flex items-center gap-4">
           <span
             data-reveal="icon"
-            className="font-display text-3xl font-semibold leading-none tracking-[-0.02em] text-foreground/85 md:text-4xl"
+            className="font-display text-3xl font-medium leading-none tracking-[-0.02em] text-foreground/85 md:text-4xl"
           >
             {n}
           </span>

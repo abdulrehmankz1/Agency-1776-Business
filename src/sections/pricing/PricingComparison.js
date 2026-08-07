@@ -38,7 +38,7 @@ export default function PricingComparison() {
             Compare / 03
           </span>
         </MaskedLine>
-        <h2 className="max-w-3xl text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+        <h2 className="max-w-3xl text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
           <ScrubText>Same team.</ScrubText>{" "}
           <StencilFill className="text-accent">Different tempo.</StencilFill>
         </h2>

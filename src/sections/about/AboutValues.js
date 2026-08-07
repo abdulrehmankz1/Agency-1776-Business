@@ -92,7 +92,7 @@ export default function AboutValues() {
             <div className="flex items-center gap-4">
               <span
                 data-reveal="icon"
-                className="font-display text-3xl font-semibold leading-none tracking-[-0.02em] text-foreground/85 md:text-4xl"
+                className="font-display text-3xl font-medium leading-none tracking-[-0.02em] text-foreground/85 md:text-4xl"
               >
                 {v.n}
               </span>
@@ -104,7 +104,7 @@ export default function AboutValues() {
 
             <MaskedLine
               as="h3"
-              className="text-xl font-semibold leading-[1.2] tracking-[0.03em] text-foreground md:text-2xl"
+              className="text-xl font-medium leading-[1.2] tracking-[0.03em] text-foreground md:text-2xl"
             >
               {v.title}
             </MaskedLine>
