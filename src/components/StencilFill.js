@@ -55,6 +55,14 @@ export function StencilFill({
     registerGsap();
     const scope = ref.current;
 
+    // Mobile LCP: the `immediate` (Hero) boot compresses/dims the accent
+    // word until GSAP runs. On touch, skip it so the word paints immediately
+    // with the rest of the heading. Desktop keeps the CRT-boot reveal.
+    const isTouch =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(hover: none)").matches;
+    if (immediate && isTouch) return;
+
     const ctx = gsap.context(() => {
       const letters = scope.querySelectorAll("[data-stencil-letter]");
       if (!letters.length) return;
