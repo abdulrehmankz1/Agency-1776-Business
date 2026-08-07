@@ -44,7 +44,7 @@ function Block({ block }) {
     return (
       <MaskedLine
         as="h3"
-        className="pt-2 text-sm font-medium uppercase tracking-[0.14em] text-foreground/85"
+        className="pt-2 text-sm font-medium uppercase tracking-[0.14em] text-foreground/85 md:text-[15px]"
       >
         {block.text}
       </MaskedLine>
@@ -86,7 +86,7 @@ export default function LegalDocument({ lastUpdated, intro, sections }) {
     >
       <div className="flex flex-col gap-6 border-b border-muted/25 pb-10">
         {lastUpdated && (
-          <MaskedLine className="font-mono text-[11px] uppercase tracking-[0.28em] text-foreground/40">
+          <MaskedLine className="font-mono text-xs uppercase tracking-[0.28em] text-foreground/40 md:text-[15px]">
             Last updated · {lastUpdated}
           </MaskedLine>
         )}
@@ -104,7 +104,7 @@ export default function LegalDocument({ lastUpdated, intro, sections }) {
               <span
                 data-reveal="icon"
                 aria-hidden
-                className="font-mono text-xs tracking-[0.2em] text-accent"
+                className="font-mono text-sm tracking-[0.2em] text-accent md:text-base"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>

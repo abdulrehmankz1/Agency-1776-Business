@@ -1,7 +1,6 @@
 "use client";
 
 import SectionShell from "@/components/SectionShell";
-import CTAButton from "@/components/CTAButton";
 import { MaskedLine } from "@/components/MaskedLine";
 import { ScrubText } from "@/components/ScrubText";
 import { StencilFill } from "@/components/StencilFill";
@@ -49,12 +48,6 @@ export default function AboutExperience() {
             donors, supporters, inquiries, bookings, and momentum.
           </MaskedLine>
         </p>
-
-        <div data-reveal="icon">
-          <CTAButton href="/work" size="lg">
-            View our work
-          </CTAButton>
-        </div>
       </div>
     </SectionShell>
   );

@@ -3,7 +3,6 @@ import Overview from "@/sections/Overview";
 import ValueGrid from "@/sections/ValueGrid";
 import Services from "@/sections/Services";
 import Audience from "@/sections/Audience";
-import Portfolio from "@/sections/Portfolio";
 import Pricing from "@/sections/Pricing";
 import Contact from "@/sections/Contact";
 
@@ -16,7 +15,6 @@ export default function Home() {
       <ValueGrid />
       <Audience />
       <Pricing />
-      <Portfolio />
       <Contact />
     </>
   );
