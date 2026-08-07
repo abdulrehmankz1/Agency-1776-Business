@@ -28,7 +28,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 const LINKS = [
   { id: "services", href: "/services", label: "Services", matchPrefix: "/services" },
   { id: "about",    href: "/about",    label: "About",    matchPrefix: "/about" },
-  { id: "work",     href: "/work",     label: "Portfolio", matchPrefix: "/work" },
+  // Portfolio ("/work") temporarily hidden — link removed. Restore this entry
+  // to bring it back to the nav.
   { id: "pricing",  href: "/pricing",  label: "Pricing",  matchPrefix: "/pricing" },
   { id: "contact",  href: "/contact",  label: "Contact",  matchPrefix: "/contact" },
 ];

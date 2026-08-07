@@ -149,19 +149,28 @@ export default function PricingTiers() {
                   <MaskedLine className="text-xs uppercase tracking-[0.32em] text-accent font-bold">
                     {t.name}
                   </MaskedLine>
-                  {t.featured && (
-                    <span
-                      data-reveal="icon"
-                      className="chamfer chamfer-xs inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[10px] uppercase tracking-[0.22em] text-accent"
-                      style={{
-                        "--chamfer-border-color": "var(--accent)",
-                        "--chamfer-bg": "var(--surface)",
-                      }}
-                    >
-                      <span className="relative z-10 h-1 w-1 bg-accent" />
-                      <span className="relative z-10">Most complete</span>
-                    </span>
-                  )}
+                  {/* The badge is always rendered so both cards' name rows are
+                      the SAME height — otherwise the featured card's badge made
+                      its row taller, pushing its tagline + paragraph down and
+                      out of alignment with the other card. On the non-featured
+                      card it is `invisible` (reserves space, paints nothing)
+                      and carries no data-reveal so the section reveal can't
+                      un-hide it. */}
+                  <span
+                    aria-hidden={!t.featured}
+                    data-reveal={t.featured ? "icon" : undefined}
+                    className={
+                      "chamfer chamfer-xs inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[10px] uppercase tracking-[0.22em] text-accent" +
+                      (t.featured ? "" : " invisible")
+                    }
+                    style={{
+                      "--chamfer-border-color": "var(--accent)",
+                      "--chamfer-bg": "var(--surface)",
+                    }}
+                  >
+                    <span className="relative z-10 h-1 w-1 bg-accent" />
+                    <span className="relative z-10">Most complete</span>
+                  </span>
                 </div>
                 <MaskedLine
                   as="h3"

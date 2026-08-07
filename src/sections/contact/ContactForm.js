@@ -314,7 +314,6 @@ export default function ContactForm() {
               checked={smsConsent}
               onChange={(e) => setSmsConsent(e.target.checked)}
               disabled={!hasPhone}
-              required={hasPhone}
             >
               I agree to receive account and project-related text messages from
               Agency 1776 at the number provided. Message frequency
@@ -326,7 +325,6 @@ export default function ContactForm() {
               checked={promoConsent}
               onChange={(e) => setPromoConsent(e.target.checked)}
               disabled={!hasPhone}
-              required={hasPhone}
             >
               I agree to receive occasional promotional and marketing text
               messages from Agency 1776. Message frequency varies. Msg

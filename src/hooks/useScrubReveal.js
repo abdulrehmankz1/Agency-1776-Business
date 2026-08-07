@@ -44,6 +44,17 @@ export function useScrubReveal({
     if (!ref.current) return;
     registerGsap();
     const scope = ref.current;
+
+    // Mobile LCP: the `immediate` (Hero) materialisation hides the largest
+    // heading (opacity 0 → 1) until GSAP starts up, which pushed mobile LCP
+    // to ~3.7s. On touch devices skip it entirely so the heading paints with
+    // first paint (LCP ≈ FCP). Desktop keeps the full dust entrance. Matches
+    // SmoothScroll, which also bails on touch.
+    const isTouch =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(hover: none)").matches;
+    if (immediate && isTouch) return;
+
     // Trigger element = the ref itself (the heading column). Section-
     // anchored triggers fired before the heading was visible; ref-
     // anchored triggers sync the scrub 1:1 with heading visibility.

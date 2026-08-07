@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "motion/react";
 import SectionShell from "@/components/SectionShell";
 import CTAButton from "@/components/CTAButton";
 import { MaskedLine } from "@/components/MaskedLine";
@@ -65,22 +63,6 @@ export default function Hero() {
           <CTAButton href="/contact" size="lg">
             Get more leads
           </CTAButton>
-          {(() => {
-            const MotionLink = motion.create(Link);
-            return (
-              <MotionLink
-                href="/work"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 480, damping: 28 }}
-                data-cursor="link"
-                className="inline-flex items-center gap-4 px-2 py-4 text-sm uppercase tracking-[0.24em] text-foreground"
-              >
-                See all our work
-                <span className="inline-block h-px w-6 bg-foreground" />
-              </MotionLink>
-            );
-          })()}
         </div>
         </div>
       </div>

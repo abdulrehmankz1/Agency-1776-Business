@@ -131,6 +131,30 @@ html {
   font-size: 17px;
 }
 
+/* Desktop minimum-font floor. On ≥768px viewports every text utility must
+   render at ≥15px for comfortable reading — the site's many micro-labels,
+   badges, and eyebrow captions (text-xs ≈ 12.75px, and the fixed set of
+   arbitrary text-[7px…14px] tokens) otherwise fall well below that.
+   Deliberately UNLAYERED so it wins over Tailwind's layered utilities,
+   including responsive variants. This is safe because no small-size class
+   in the tree is ever *upscaled* past 15px on desktop (verified), so
+   nothing legitimately larger gets capped. text-sm (≈14.875px) is left
+   alone: it's effectively 15px and is widely paired with `md:text-base`
+   upsizes that an override here would wrongly flatten. */
+@media (min-width: 768px) {
+  .text-xs,
+  .text-\[7px\],
+  .text-\[8px\],
+  .text-\[9px\],
+  .text-\[10px\],
+  .text-\[11px\],
+  .text-\[12px\],
+  .text-\[13px\],
+  .text-\[14px\] {
+    font-size: 15px;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

@@ -19,7 +19,7 @@ import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const PRIMARY_LINKS = [
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/work" },
+  // Portfolio ("/work") temporarily hidden — link removed. Restore to bring back.
   { label: "About", href: "/about" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
