@@ -1,6 +1,9 @@
 import { Bebas_Neue, Space_Grotesk, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import GlobalChrome from "@/components/GlobalChrome";
+
+const GA_MEASUREMENT_ID = "G-SLBJ8GTJ4S";
 
 // Body face — Space Grotesk (variable) drives paragraphs, buttons,
 // nav, form fields, and everything that isn't a heading or monospace
@@ -64,6 +67,18 @@ export default function RootLayout({ children }) {
     >
       <body className="isolate min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-background">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <GlobalChrome>{children}</GlobalChrome>
       </body>
     </html>
